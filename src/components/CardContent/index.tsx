@@ -3,7 +3,7 @@ import * as Chakra from "@chakra-ui/react";
 
 interface ICard {
   bgImage?: string;
-  theme: string;
+  subject: string;
   title: string;
   content: string;
   authorName: string;
@@ -42,7 +42,7 @@ export const CardContent = (props: ICard) => {
         bg="linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.75) 100%)"
       >
         <Chakra.VStack w="full" h="full" align="flex-start">
-          <Chakra.Text color="gray.300">{props.theme}</Chakra.Text>
+          <Chakra.Text color="gray.300">{props.subject}</Chakra.Text>
           <Chakra.Text color="cyan.300" fontSize="32" fontWeight="bold">
             {props.title}
           </Chakra.Text>

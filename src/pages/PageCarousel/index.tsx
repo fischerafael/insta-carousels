@@ -3,6 +3,12 @@ import * as Chakra from "@chakra-ui/react";
 import { CardContent } from "../../components/CardContent";
 
 export const PageCarousel = () => {
+  const [state, setState] = React.useState({
+    authorName: "",
+    authorHandle: "",
+    authorAvatarURL: "",
+  });
+
   return (
     <Chakra.VStack bg="gray.900" color="white" align="center" spacing="0">
       <Chakra.HStack h="10vh" w="full" maxW="container.lg">
@@ -45,7 +51,7 @@ export const PageCarousel = () => {
 
         <Chakra.VStack w="full" spacing="0">
           <CardContent
-            theme="#linkedin"
+            subject="#linkedin"
             title="Carousel Secrets"
             content="Ok so, you guys like carousels. You really like them. Everyone’s
             making them. It’s a carousel-ebration. But it’s also a
