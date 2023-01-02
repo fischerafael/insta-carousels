@@ -45,6 +45,21 @@ export const PageCarousel = () => {
     }));
   };
 
+  const handleEditCard = (CardContent: string, key: string, value: string) => {
+    setState((prev) => ({
+      ...prev,
+      cards: prev.cards.map((card) => {
+        if (CardContent === card.content) {
+          return {
+            ...card,
+            [key]: value,
+          };
+        }
+        return card;
+      }),
+    }));
+  };
+
   const isHandlAddCardEnabled = !!state.content && !!state.title;
 
   console.log(state);
@@ -106,10 +121,10 @@ export const PageCarousel = () => {
               3. Content
             </Chakra.Text>
 
-            <Chakra.VStack w="full" align="flex-start">
+            <Chakra.Grid w="full" gap="8">
               {state.cards.map((card, index) => (
-                <>
-                  <Chakra.Text fontSize="xs" fontWeight="bold">
+                <Chakra.VStack w="full" align="flex-start" spacing="4">
+                  <Chakra.Text color="cyan.300" fontSize="xs" fontWeight="bold">
                     Card #{index + 1}
                   </Chakra.Text>
                   <Chakra.Input
@@ -117,29 +132,35 @@ export const PageCarousel = () => {
                     variant="flushed"
                     value={card.title}
                     size="xs"
-                    onChange={(e) => handleOnChange("title", e.target.value)}
+                    onChange={(e) =>
+                      handleEditCard(card.content, "title", e.target.value)
+                    }
                   />
                   <Chakra.Textarea
                     placeholder="Content"
                     variant="flushed"
                     size="xs"
                     value={card.content}
-                    onChange={(e) => handleOnChange("content", e.target.value)}
+                    onChange={(e) =>
+                      handleEditCard(card.content, "content", e.target.value)
+                    }
                   />
                   <Chakra.Input
                     placeholder="Background Image URL"
                     variant="flushed"
                     size="xs"
                     value={card.bgImage}
-                    onChange={(e) => handleOnChange("bgImage", e.target.value)}
+                    onChange={(e) =>
+                      handleEditCard(card.content, "bgImage", e.target.value)
+                    }
                   />
-                </>
+                </Chakra.VStack>
               ))}
-            </Chakra.VStack>
+            </Chakra.Grid>
             <Chakra.VStack w="full" align="flex-start">
               <>
-                <Chakra.Text fontSize="xs" fontWeight="bold">
-                  Card #1
+                <Chakra.Text color="cyan.300" fontSize="xs" fontWeight="bold">
+                  New Card
                 </Chakra.Text>
                 <Chakra.Input
                   placeholder="Title"
@@ -180,25 +201,31 @@ export const PageCarousel = () => {
       }
       rightSection={
         <Chakra.Grid w="full" gap="2" p="8" justifyItems="center">
-          <CardContent
-            subject={state.subject}
-            title={state.title}
-            content={state.content}
-            bgImage={state.bgImage}
-            authorName={state.authorName}
-            authorHandle={state.authorHandle}
-            authorAvatar={state.authorAvatarURL}
-          />
+          {state.cards.length !== 0 &&
+            state.cards.map((card) => (
+              <CardContent
+                key={card.content}
+                title={card.title}
+                content={card.content}
+                bgImage={card.bgImage}
+                subject={state.subject}
+                authorName={state.authorName}
+                authorHandle={state.authorHandle}
+                authorAvatar={state.authorAvatarURL}
+              />
+            ))}
 
-          <CardContent
-            subject={state.subject}
-            title={state.title}
-            content={state.content}
-            bgImage={state.bgImage}
-            authorName={state.authorName}
-            authorHandle={state.authorHandle}
-            authorAvatar={state.authorAvatarURL}
-          />
+          {state.cards.length === 0 && (
+            <CardContent
+              subject={state.subject}
+              title={state.title}
+              content={state.content}
+              bgImage={state.bgImage}
+              authorName={state.authorName}
+              authorHandle={state.authorHandle}
+              authorAvatar={state.authorAvatarURL}
+            />
+          )}
         </Chakra.Grid>
       }
     />
