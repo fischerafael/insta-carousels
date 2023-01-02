@@ -7,6 +7,10 @@ export const PageCarousel = () => {
     authorName: "",
     authorHandle: "",
     authorAvatarURL: "",
+    subject: "",
+    title: "",
+    content: "",
+    bgImage: "",
   });
 
   return (
