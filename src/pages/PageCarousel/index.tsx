@@ -57,8 +57,8 @@ export const PageCarousel = () => {
         </Chakra.Grid>
       }
       leftSection={
-        <>
-          <Chakra.Grid w="full" alignItems="flex-start">
+        <Chakra.Grid w="full" gap="16" p="8">
+          <Chakra.VStack w="full" align="flex-start">
             <Chakra.Text fontSize="xs" fontWeight="bold">
               1. Author
             </Chakra.Text>
@@ -85,9 +85,9 @@ export const PageCarousel = () => {
                 handleOnChange("authorAvatarURL", e.target.value)
               }
             />
-          </Chakra.Grid>
+          </Chakra.VStack>
 
-          <Chakra.Grid w="full" alignItems="flex-start">
+          <Chakra.VStack w="full" align="flex-start">
             <Chakra.Text fontSize="xs" fontWeight="bold">
               2. Theme
             </Chakra.Text>
@@ -99,7 +99,7 @@ export const PageCarousel = () => {
               value={state.subject}
               onChange={(e) => handleOnChange("subject", e.target.value)}
             />
-          </Chakra.Grid>
+          </Chakra.VStack>
 
           <Chakra.VStack w="full" align="flex-start" spacing="8">
             <Chakra.Text fontSize="xs" fontWeight="bold">
@@ -176,10 +176,10 @@ export const PageCarousel = () => {
               onClick={handleAddCard}
             />
           </Chakra.VStack>
-        </>
+        </Chakra.Grid>
       }
       rightSection={
-        <>
+        <Chakra.Grid w="full" gap="2" p="8" justifyItems="center">
           <CardContent
             subject={state.subject}
             title={state.title}
@@ -199,7 +199,7 @@ export const PageCarousel = () => {
             authorHandle={state.authorHandle}
             authorAvatar={state.authorAvatarURL}
           />
-        </>
+        </Chakra.Grid>
       }
     />
   );

@@ -22,7 +22,7 @@ export const TemplateNewCarousel = ({
     >
       <Chakra.Grid h="10vh">{header}</Chakra.Grid>
 
-      <Chakra.Grid bg="gray.800" w="full" justifyItems="center">
+      <Chakra.Grid bg="gray.900" w="full" justifyItems="center">
         <Chakra.Grid
           h="full"
           maxW="container.lg"
@@ -41,7 +41,7 @@ export const TemplateNewCarousel = ({
                 width: "6px",
               },
               "&::-webkit-scrollbar-thumb": {
-                background: "#76E4F7",
+                background: "#1A202C",
                 borderRadius: "24px",
               },
             }}
@@ -61,7 +61,7 @@ export const TemplateNewCarousel = ({
                 width: "6px",
               },
               "&::-webkit-scrollbar-thumb": {
-                background: "#76E4F7",
+                background: "#1A202C",
                 borderRadius: "24px",
               },
             }}
