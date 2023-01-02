@@ -15,8 +15,32 @@ export const PageCarousel = () => {
         maxW="container.lg"
         templateColumns="1fr 2fr"
       >
-        <Chakra.VStack w="full" justify="">
-          <Chakra.Text>InstantCarousels</Chakra.Text>
+        <Chakra.VStack w="full" align="flex-start" spacing="8">
+          <Chakra.VStack w="full" align="flex-start">
+            <Chakra.Text fontSize="xs" fontWeight="bold">
+              1. Author
+            </Chakra.Text>
+            <Chakra.Input placeholder="Author Name" variant="flushed" />
+            <Chakra.Input placeholder="Author Handle" variant="flushed" />
+            <Chakra.Input placeholder="Author Avatar URL" variant="flushed" />
+          </Chakra.VStack>
+
+          <Chakra.VStack w="full" align="flex-start">
+            <Chakra.Text fontSize="xs" fontWeight="bold">
+              2. Theme
+            </Chakra.Text>
+
+            <Chakra.Input placeholder="Theme" variant="flushed" />
+            <Chakra.Input placeholder="Background Image" variant="flushed" />
+          </Chakra.VStack>
+
+          <Chakra.VStack w="full" align="flex-start">
+            <Chakra.Text fontSize="xs" fontWeight="bold">
+              3. Content
+            </Chakra.Text>
+            <Chakra.Input placeholder="Title" variant="flushed" />
+            <Chakra.Input placeholder="Content" variant="flushed" />
+          </Chakra.VStack>
         </Chakra.VStack>
 
         <Chakra.VStack w="full" spacing="0">
