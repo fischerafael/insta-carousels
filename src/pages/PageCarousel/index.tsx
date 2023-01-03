@@ -4,7 +4,9 @@ import * as Icon from "react-icons/hi";
 import { CardContent } from "../../components/CardContent";
 import { ICard, ICardContent } from "../../entities/ICard";
 import { TemplateNewCarousel } from "../../components/TemplateNewCarousel";
+
 import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 interface IState {
   authorName: string;
@@ -65,15 +67,37 @@ export const PageCarousel = () => {
 
   const pdfRef = React.useRef(null);
 
-  const handleDownload = () => {
-    const content = pdfRef.current;
+  const handleDownload = async () => {
+    // const content = pdfRef.current;
 
-    const doc = new jsPDF();
-    doc.html(content as any, {
-      callback: function (doc) {
-        doc.save("sample.pdf");
-      },
+    // doc.setProperties({});
+    // doc.html(content as any, {
+    //   callback: function (doc) {
+    //     doc.setPage(1)
+    //     doc.
+    //     doc.save('sample.pdf');
+    //   },
+    // });
+
+    const element = pdfRef.current;
+    const canvas = await html2canvas(element!, {
+      scale: 2,
     });
+    const data = canvas.toDataURL("image/png");
+
+    const pdf = new jsPDF({
+      unit: "px",
+      compress: true,
+      format: [480, 600],
+    });
+    const width = pdf.internal.pageSize.getWidth();
+    const height = pdf.internal.pageSize.getHeight();
+
+    pdf.addImage(data, "PNG", 0, 0, width, height);
+    pdf.addPage();
+    pdf.addImage(data, "PNG", 0, 0, width, height);
+
+    pdf.save("print.pdf");
   };
 
   console.log(state);
@@ -212,7 +236,7 @@ export const PageCarousel = () => {
         </Chakra.Grid>
       }
       rightSection={
-        <Chakra.Grid w="full" gap="2" p="8" justifyItems="center" ref={pdfRef}>
+        <Chakra.Grid w="full" gap="2" p="8" justifyItems="center">
           {state.cards.length !== 0 &&
             state.cards.map((card) => (
               <CardContent
@@ -224,6 +248,7 @@ export const PageCarousel = () => {
                 authorName={state.authorName}
                 authorHandle={state.authorHandle}
                 authorAvatar={state.authorAvatarURL}
+                ref={pdfRef}
               />
             ))}
 
@@ -236,6 +261,7 @@ export const PageCarousel = () => {
               authorName={state.authorName}
               authorHandle={state.authorHandle}
               authorAvatar={state.authorAvatarURL}
+              ref={pdfRef}
             />
           )}
 

@@ -1,8 +1,8 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import * as Chakra from "@chakra-ui/react";
 import { ICard } from "../../entities/ICard";
 
-export const CardContent = (props: ICard) => {
+export const CardContent = forwardRef((props: ICard, ref) => {
   return (
     <Chakra.VStack
       w="480px"
@@ -12,6 +12,7 @@ export const CardContent = (props: ICard) => {
       position="relative"
       overflow="hidden"
       spacing="0"
+      ref={ref as any}
     >
       <Chakra.VStack
         bgImage={props.bgImage}
@@ -59,4 +60,4 @@ export const CardContent = (props: ICard) => {
       </Chakra.VStack>
     </Chakra.VStack>
   );
-};
+});
