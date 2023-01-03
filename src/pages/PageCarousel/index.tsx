@@ -2,8 +2,9 @@ import React from "react";
 import * as Chakra from "@chakra-ui/react";
 import * as Icon from "react-icons/hi";
 import { CardContent } from "../../components/CardContent";
-import { ICardContent } from "../../entities/ICard";
+import { ICard, ICardContent } from "../../entities/ICard";
 import { TemplateNewCarousel } from "../../components/TemplateNewCarousel";
+import jsPDF from "jspdf";
 
 interface IState {
   authorName: string;
@@ -61,6 +62,19 @@ export const PageCarousel = () => {
   };
 
   const isHandlAddCardEnabled = !!state.content && !!state.title;
+
+  const pdfRef = React.useRef(null);
+
+  const handleDownload = () => {
+    const content = pdfRef.current;
+
+    const doc = new jsPDF();
+    doc.html(content as any, {
+      callback: function (doc) {
+        doc.save("sample.pdf");
+      },
+    });
+  };
 
   console.log(state);
 
@@ -198,7 +212,7 @@ export const PageCarousel = () => {
         </Chakra.Grid>
       }
       rightSection={
-        <Chakra.Grid w="full" gap="2" p="8" justifyItems="center">
+        <Chakra.Grid w="full" gap="2" p="8" justifyItems="center" ref={pdfRef}>
           {state.cards.length !== 0 &&
             state.cards.map((card) => (
               <CardContent
@@ -224,6 +238,8 @@ export const PageCarousel = () => {
               authorAvatar={state.authorAvatarURL}
             />
           )}
+
+          <Chakra.Button onClick={handleDownload}>Download</Chakra.Button>
         </Chakra.Grid>
       }
     />
