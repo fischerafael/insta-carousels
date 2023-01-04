@@ -42,24 +42,29 @@ export const PageCarousel = () => {
   );
 
   const handleDownload = async () => {
-    const pdf = new jsPDF({
-      unit: "px",
-      compress: true,
-      format: [480, 600],
-    });
-
-    const width = pdf.internal.pageSize.getWidth();
-    const height = pdf.internal.pageSize.getHeight();
     try {
-      cardRefs.current.forEach(async (ref: any) => {
-        const canvas = await html2canvas(ref.current, {
+      const pdf = new jsPDF({
+        unit: "px",
+        compress: true,
+        format: [480, 600],
+      });
+
+      const width = pdf.internal.pageSize.getWidth();
+      const height = pdf.internal.pageSize.getHeight();
+
+      for (let card of cardRefs.current) {
+        const canvas = await html2canvas(card.current, {
           scale: 2,
         });
+
         const data = canvas.toDataURL("image/png");
-        pdf.addPage();
+
         pdf.addImage(data, "PNG", 0, 0, width, height);
-      });
-      console.log(pdf);
+        pdf.addPage();
+      }
+
+      console.log("outside loop");
+
       pdf.save("print.pdf");
     } catch (e) {
       console.log(e);
