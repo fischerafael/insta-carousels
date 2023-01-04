@@ -68,39 +68,27 @@ export const PageCarousel = () => {
   const pdfRef = React.useRef(null);
 
   const handleDownload = async () => {
-    // const content = pdfRef.current;
-
-    // doc.setProperties({});
-    // doc.html(content as any, {
-    //   callback: function (doc) {
-    //     doc.setPage(1)
-    //     doc.
-    //     doc.save('sample.pdf');
-    //   },
-    // });
-
-    const element = pdfRef.current;
-    const canvas = await html2canvas(element!, {
-      scale: 2,
-    });
-    const data = canvas.toDataURL("image/png");
-
     const pdf = new jsPDF({
       unit: "px",
       compress: true,
       format: [480, 600],
     });
+
     const width = pdf.internal.pageSize.getWidth();
     const height = pdf.internal.pageSize.getHeight();
 
+    const el = pdfRef.current;
+
+    const canvas = await html2canvas(el!, {
+      scale: 2,
+    });
+    const data = canvas.toDataURL("image/png");
+
     pdf.addImage(data, "PNG", 0, 0, width, height);
     pdf.addPage();
-    pdf.addImage(data, "PNG", 0, 0, width, height);
 
     pdf.save("print.pdf");
   };
-
-  console.log(state);
 
   return (
     <TemplateNewCarousel
