@@ -35,6 +35,69 @@ export const PageCarousel = () => {
     setState((prev) => ({ ...prev, [key]: value }));
   };
 
+  // creates refs array
+  const cardRefs = React.useRef([]);
+  cardRefs.current = state.cards.map(
+    (_, i) => cardRefs.current[i] ?? React.createRef()
+  );
+
+  const handleDownload = async () => {
+    const pdf = new jsPDF({
+      unit: "px",
+      compress: true,
+      format: [480, 600],
+    });
+
+    const width = pdf.internal.pageSize.getWidth();
+    const height = pdf.internal.pageSize.getHeight();
+    try {
+      cardRefs.current.forEach(async (ref: any) => {
+        const canvas = await html2canvas(ref.current, {
+          scale: 2,
+        });
+        const data = canvas.toDataURL("image/png");
+        pdf.addPage();
+        pdf.addImage(data, "PNG", 0, 0, width, height);
+      });
+      console.log(pdf);
+      pdf.save("print.pdf");
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  // };
+
+  // const handleDownload = async () => {
+  //   const el = pdfRef.current;
+
+  //   const canvas = await html2canvas(el!, {
+  //     scale: 2,
+  //   });
+  //   const data = canvas.toDataURL("image/png");
+
+  //   pdf.addImage(data, "PNG", 0, 0, width, height);
+  //   pdf.addPage();
+
+  //   pdf.save("print.pdf");
+  // };
+
+  // const pdfRef = React.useRef(null);
+
+  // const handleDownload = async () => {
+  //   const el = pdfRef.current;
+
+  //   const canvas = await html2canvas(el!, {
+  //     scale: 2,
+  //   });
+  //   const data = canvas.toDataURL("image/png");
+
+  //   pdf.addImage(data, "PNG", 0, 0, width, height);
+  //   pdf.addPage();
+
+  //   pdf.save("print.pdf");
+  // };
+
   const handleAddCard = () => {
     setState((prev) => ({
       ...prev,
@@ -64,31 +127,6 @@ export const PageCarousel = () => {
   };
 
   const isHandlAddCardEnabled = !!state.content && !!state.title;
-
-  const pdfRef = React.useRef(null);
-
-  const handleDownload = async () => {
-    const pdf = new jsPDF({
-      unit: "px",
-      compress: true,
-      format: [480, 600],
-    });
-
-    const width = pdf.internal.pageSize.getWidth();
-    const height = pdf.internal.pageSize.getHeight();
-
-    const el = pdfRef.current;
-
-    const canvas = await html2canvas(el!, {
-      scale: 2,
-    });
-    const data = canvas.toDataURL("image/png");
-
-    pdf.addImage(data, "PNG", 0, 0, width, height);
-    pdf.addPage();
-
-    pdf.save("print.pdf");
-  };
 
   return (
     <TemplateNewCarousel
@@ -226,19 +264,21 @@ export const PageCarousel = () => {
       rightSection={
         <Chakra.Grid w="full" gap="2" p="8" justifyItems="center">
           {state.cards.length !== 0 &&
-            state.cards.map((card) => (
-              <CardContent
-                key={card.content}
-                title={card.title}
-                content={card.content}
-                bgImage={card.bgImage}
-                subject={state.subject}
-                authorName={state.authorName}
-                authorHandle={state.authorHandle}
-                authorAvatar={state.authorAvatarURL}
-                ref={pdfRef}
-              />
-            ))}
+            state.cards.map((card, cardIndex) => {
+              return (
+                <CardContent
+                  key={card.content}
+                  title={card.title}
+                  content={card.content}
+                  bgImage={card.bgImage}
+                  subject={state.subject}
+                  authorName={state.authorName}
+                  authorHandle={state.authorHandle}
+                  authorAvatar={state.authorAvatarURL}
+                  ref={cardRefs.current[cardIndex]}
+                />
+              );
+            })}
 
           {state.cards.length === 0 && (
             <CardContent
@@ -249,7 +289,6 @@ export const PageCarousel = () => {
               authorName={state.authorName}
               authorHandle={state.authorHandle}
               authorAvatar={state.authorAvatarURL}
-              ref={pdfRef}
             />
           )}
 
