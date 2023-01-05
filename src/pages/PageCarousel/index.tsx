@@ -56,6 +56,7 @@ export const PageCarousel = () => {
       for (let card of cardRefs.current) {
         const canvas = await html2canvas(card.current, {
           scale: 2,
+          allowTaint: true,
         });
 
         const data = canvas.toDataURL("image/png");

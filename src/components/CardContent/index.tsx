@@ -15,8 +15,9 @@ export const CardContent = forwardRef((props: ICard, ref) => {
       spacing="0"
       ref={ref as any}
     >
-      <Chakra.VStack
-        bgImage={props.bgImage}
+      {/* <Chakra.VStack
+        // // bgImage={props.bgImage}
+        // bgImage="/coo-bg.jpg"
         color="gray.400"
         w="full"
         h="full"
@@ -25,14 +26,14 @@ export const CardContent = forwardRef((props: ICard, ref) => {
         bgSize="cover"
         position="absolute"
         zIndex="1"
-      />
+      /> */}
       <Chakra.VStack
         w="full"
         h="full"
         p="16"
         zIndex="2"
         justify="space-between"
-        bg="linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.75) 100%)"
+        // bg="linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.75) 100%)"
       >
         <Chakra.VStack w="full" h="full" align="flex-start">
           <Chakra.Text color="gray.400">
