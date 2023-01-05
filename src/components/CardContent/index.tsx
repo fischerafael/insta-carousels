@@ -7,26 +7,15 @@ export const CardContent = forwardRef((props: ICard, ref) => {
   return (
     <Chakra.VStack
       w="480px"
-      bg="gray.800"
+      bgGradient="linear(to-l, gray.800, gray.900)"
       h="600px"
       align="flex-start"
       position="relative"
       overflow="hidden"
+      shadow="lg"
       spacing="0"
       ref={ref as any}
     >
-      {/* <Chakra.VStack
-        // // bgImage={props.bgImage}
-        // bgImage="/coo-bg.jpg"
-        color="gray.400"
-        w="full"
-        h="full"
-        bgPosition="center"
-        bgRepeat="no-repeat"
-        bgSize="cover"
-        position="absolute"
-        zIndex="1"
-      /> */}
       <Chakra.VStack
         w="full"
         h="full"
@@ -39,7 +28,7 @@ export const CardContent = forwardRef((props: ICard, ref) => {
           <Chakra.Text color="gray.400">
             {props.subject || "Subject"}
           </Chakra.Text>
-          <Chakra.Text color="cyan.300" fontSize="4xl" fontWeight="bold">
+          <Chakra.Text color="cyan.300" fontSize="5xl" fontWeight="bold">
             {props.title || "Card Title"}
           </Chakra.Text>
           <Chakra.Text lineHeight="10" fontSize="lg">
