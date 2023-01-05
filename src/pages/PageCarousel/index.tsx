@@ -170,8 +170,10 @@ export const PageCarousel = () => {
                   w="full"
                   align="flex-start"
                   spacing="4"
+                  bg="gray.800"
+                  p="8"
                 >
-                  <Chakra.Text color="cyan.300" fontSize="xs" fontWeight="bold">
+                  <Chakra.Text color="gray.500" fontSize="xs">
                     Card #{index + 1}
                   </Chakra.Text>
                   <Chakra.Input
@@ -204,8 +206,14 @@ export const PageCarousel = () => {
                 </Chakra.VStack>
               ))}
             </Chakra.Grid>
-            <Chakra.Grid w="full" justifyItems="flex-start">
-              <Chakra.Text color="cyan.300" fontSize="xs" fontWeight="bold">
+            <Chakra.Grid
+              w="full"
+              justifyItems="flex-start"
+              gap="4"
+              bg="gray.800"
+              p="8"
+            >
+              <Chakra.Text color="gray.500" fontSize="xs">
                 New Card
               </Chakra.Text>
               <Chakra.Input
@@ -233,11 +241,12 @@ export const PageCarousel = () => {
 
             <Chakra.IconButton
               aria-label="Add Card"
-              colorScheme="cyan"
+              colorScheme="teal"
               as={Icon.HiOutlinePlus}
               cursor="pointer"
               w="full"
               size="xs"
+              borderRadius="0"
               isDisabled={!isHandlAddCardEnabled}
               onClick={handleAddCard}
             />
@@ -275,7 +284,9 @@ export const PageCarousel = () => {
             />
           )}
 
-          <Chakra.Button onClick={handleDownload}>Download</Chakra.Button>
+          <Chakra.Button borderRadius="0" onClick={handleDownload}>
+            Download
+          </Chakra.Button>
         </Chakra.Grid>
       }
     />
