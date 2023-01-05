@@ -191,7 +191,7 @@ export const PageCarousel = () => {
                     value={card.title}
                     size="xs"
                     onChange={(e) =>
-                      handleEditCard(card.content, "title", e.target.value)
+                      handleEditCard(card.id, "title", e.target.value)
                     }
                   />
                   <Chakra.Textarea
@@ -200,18 +200,18 @@ export const PageCarousel = () => {
                     size="xs"
                     value={card.content}
                     onChange={(e) =>
-                      handleEditCard(card.content, "content", e.target.value)
+                      handleEditCard(card.id, "content", e.target.value)
                     }
                   />
-                  <Chakra.Input
+                  {/* <Chakra.Input
                     placeholder="Background Image URL"
                     variant="flushed"
                     size="xs"
                     value={card.bgImage}
                     onChange={(e) =>
-                      handleEditCard(card.content, "bgImage", e.target.value)
+                      handleEditCard(card.id, "bgImage", e.target.value)
                     }
-                  />
+                  /> */}
                 </Chakra.VStack>
               ))}
             </Chakra.Grid>
