@@ -51,6 +51,8 @@ export const PageCarousel = () => {
       const width = pdf.internal.pageSize.getWidth();
       const height = pdf.internal.pageSize.getHeight();
 
+      let currentIndex = 0;
+
       for (let card of cardRefs.current) {
         const canvas = await html2canvas(card.current, {
           scale: 2,
@@ -59,6 +61,10 @@ export const PageCarousel = () => {
         const data = canvas.toDataURL("image/png");
 
         pdf.addImage(data, "PNG", 0, 0, width, height);
+
+        currentIndex++;
+        if (currentIndex === cardRefs.current.length) break;
+
         pdf.addPage();
       }
 
