@@ -231,13 +231,13 @@ export const PageCarousel = () => {
                 value={state.content}
                 onChange={(e) => handleOnChange("content", e.target.value)}
               />
-              <Chakra.Input
+              {/* <Chakra.Input
                 placeholder="Background Image URL"
                 variant="flushed"
                 size="xs"
                 value={state.bgImage}
                 onChange={(e) => handleOnChange("bgImage", e.target.value)}
-              />
+              /> */}
             </Chakra.Grid>
 
             <Chakra.IconButton
