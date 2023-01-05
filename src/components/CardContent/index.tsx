@@ -49,7 +49,7 @@ export const CardContent = forwardRef((props: ICard, ref) => {
         </Chakra.VStack>
 
         <Chakra.HStack spacing="4" w="full" justify="flex-start">
-          <Chakra.Avatar src={props.authorAvatar} size="sm" />
+          {/* <Chakra.Avatar src={props.authorAvatar} size="sm" /> */}
           <Chakra.VStack spacing="0" align="flex-start">
             <Chakra.Text color="white" fontSize="sm">
               {props.authorName}
