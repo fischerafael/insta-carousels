@@ -159,7 +159,12 @@ export const PageCarousel = () => {
 
             <Chakra.Grid w="full" gap="8">
               {state.cards.map((card, index) => (
-                <Chakra.VStack w="full" align="flex-start" spacing="4">
+                <Chakra.VStack
+                  key={index}
+                  w="full"
+                  align="flex-start"
+                  spacing="4"
+                >
                   <Chakra.Text color="cyan.300" fontSize="xs" fontWeight="bold">
                     Card #{index + 1}
                   </Chakra.Text>

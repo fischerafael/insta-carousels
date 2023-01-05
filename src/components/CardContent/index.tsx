@@ -2,6 +2,7 @@ import React, { forwardRef } from "react";
 import * as Chakra from "@chakra-ui/react";
 import { ICard } from "../../entities/ICard";
 
+// eslint-disable-next-line react/display-name
 export const CardContent = forwardRef((props: ICard, ref) => {
   return (
     <Chakra.VStack
