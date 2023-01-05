@@ -2,7 +2,7 @@ import React from "react";
 import * as Chakra from "@chakra-ui/react";
 import * as Icon from "react-icons/hi";
 import { CardContent } from "../../components/CardContent";
-import { ICard, ICardContent } from "../../entities/ICard";
+import { ICardContent } from "../../entities/ICard";
 import { TemplateNewCarousel } from "../../components/TemplateNewCarousel";
 
 import jsPDF from "jspdf";
@@ -35,8 +35,7 @@ export const PageCarousel = () => {
     setState((prev) => ({ ...prev, [key]: value }));
   };
 
-  // creates refs array
-  const cardRefs = React.useRef([]);
+  const cardRefs = React.useRef<any[]>([]);
   cardRefs.current = state.cards.map(
     (_, i) => cardRefs.current[i] ?? React.createRef()
   );
@@ -70,38 +69,6 @@ export const PageCarousel = () => {
       console.log(e);
     }
   };
-
-  // };
-
-  // const handleDownload = async () => {
-  //   const el = pdfRef.current;
-
-  //   const canvas = await html2canvas(el!, {
-  //     scale: 2,
-  //   });
-  //   const data = canvas.toDataURL("image/png");
-
-  //   pdf.addImage(data, "PNG", 0, 0, width, height);
-  //   pdf.addPage();
-
-  //   pdf.save("print.pdf");
-  // };
-
-  // const pdfRef = React.useRef(null);
-
-  // const handleDownload = async () => {
-  //   const el = pdfRef.current;
-
-  //   const canvas = await html2canvas(el!, {
-  //     scale: 2,
-  //   });
-  //   const data = canvas.toDataURL("image/png");
-
-  //   pdf.addImage(data, "PNG", 0, 0, width, height);
-  //   pdf.addPage();
-
-  //   pdf.save("print.pdf");
-  // };
 
   const handleAddCard = () => {
     setState((prev) => ({
