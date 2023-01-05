@@ -254,7 +254,7 @@ export const PageCarousel = () => {
         </Chakra.Grid>
       }
       rightSection={
-        <Chakra.Grid w="full" gap="2" p="8" justifyItems="center">
+        <Chakra.Grid w="full" gap="8" p="8" justifyItems="end">
           {state.cards.length !== 0 &&
             state.cards.map((card, cardIndex) => {
               return (
@@ -284,9 +284,15 @@ export const PageCarousel = () => {
             />
           )}
 
-          <Chakra.Button borderRadius="0" onClick={handleDownload}>
-            Download
-          </Chakra.Button>
+          <Chakra.HStack w="full" justify="flex-end">
+            <Chakra.Button
+              colorScheme="teal"
+              borderRadius="0"
+              onClick={handleDownload}
+            >
+              Download
+            </Chakra.Button>
+          </Chakra.HStack>
         </Chakra.Grid>
       }
     />
