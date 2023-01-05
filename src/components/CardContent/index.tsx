@@ -28,7 +28,7 @@ export const CardContent = forwardRef((props: ICard, ref) => {
           <Chakra.Text color="gray.400">
             {props.subject || "Subject"}
           </Chakra.Text>
-          <Chakra.Text color="cyan.300" fontSize="5xl" fontWeight="bold">
+          <Chakra.Text color="teal.300" fontSize="5xl" fontWeight="bold">
             {props.title || "Card Title"}
           </Chakra.Text>
           <Chakra.Text lineHeight="10" fontSize="lg">

@@ -181,9 +181,13 @@ export const PageCarousel = () => {
                   bg="gray.800"
                   p="8"
                 >
-                  <Chakra.Text color="gray.500" fontSize="xs">
-                    Card #{index + 1}
-                  </Chakra.Text>
+                  <Chakra.HStack w="full" justify="space-between">
+                    <Chakra.Text color="gray.500" fontSize="xs">
+                      Card #{index + 1}
+                    </Chakra.Text>
+                    <Chakra.Icon as={Icon.HiOutlineTrash} color="teal.300" />
+                  </Chakra.HStack>
+
                   <Chakra.Input
                     placeholder="Title"
                     variant="flushed"
