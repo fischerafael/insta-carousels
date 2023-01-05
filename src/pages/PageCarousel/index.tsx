@@ -7,6 +7,7 @@ import { TemplateNewCarousel } from "../../components/TemplateNewCarousel";
 
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import { generateUUID } from "../../utils/generate-uuid";
 
 interface IState {
   authorName: string;
@@ -82,7 +83,12 @@ export const PageCarousel = () => {
       ...prev,
       cards: [
         ...prev.cards,
-        { content: prev.content, title: prev.title, bgImage: prev.bgImage },
+        {
+          content: prev.content,
+          title: prev.title,
+          bgImage: prev.bgImage,
+          id: generateUUID(),
+        },
       ],
       content: "",
       title: "",
@@ -90,11 +96,13 @@ export const PageCarousel = () => {
     }));
   };
 
-  const handleEditCard = (CardContent: string, key: string, value: string) => {
+  const handleRemoveCard = (cardId: string) => {};
+
+  const handleEditCard = (cardId: string, key: string, value: string) => {
     setState((prev) => ({
       ...prev,
       cards: prev.cards.map((card) => {
-        if (CardContent === card.content) {
+        if (cardId === card.id) {
           return {
             ...card,
             [key]: value,
@@ -260,7 +268,8 @@ export const PageCarousel = () => {
             state.cards.map((card, cardIndex) => {
               return (
                 <CardContent
-                  key={card.content}
+                  id={card.id}
+                  key={card.id}
                   title={card.title}
                   content={card.content}
                   bgImage={card.bgImage}
@@ -275,6 +284,7 @@ export const PageCarousel = () => {
 
           {state.cards.length === 0 && (
             <CardContent
+              id={""}
               subject={state.subject}
               title={state.title}
               content={state.content}

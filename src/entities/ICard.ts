@@ -7,6 +7,7 @@ export interface ICard extends ICardContent {
 
 export interface ICardContent {
   content: string;
+  id: string;
   title?: string;
   bgImage?: string;
 }
