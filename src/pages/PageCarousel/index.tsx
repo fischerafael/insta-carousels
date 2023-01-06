@@ -95,7 +95,12 @@ export const PageCarousel = () => {
     }));
   };
 
-  const handleRemoveCard = (cardId: string) => {};
+  const handleRemoveCard = (cardId: string) => {
+    setState((prev) => ({
+      ...prev,
+      cards: prev.cards.filter((card) => card.id !== cardId),
+    }));
+  };
 
   const handleEditCard = (cardId: string, key: string, value: string) => {
     setState((prev) => ({
@@ -113,6 +118,7 @@ export const PageCarousel = () => {
   };
 
   const isHandlAddCardEnabled = !!state.content && !!state.title;
+  const isDownloadEnabled = state.cards.length !== 0;
 
   return (
     <TemplateNewCarousel
@@ -154,7 +160,7 @@ export const PageCarousel = () => {
 
           <Chakra.Grid w="full" justifyItems="flex-start" gap="4">
             <Chakra.Text fontSize="xs" fontWeight="bold">
-              2. Theme
+              2. Subject
             </Chakra.Text>
 
             <Chakra.Input
@@ -185,7 +191,11 @@ export const PageCarousel = () => {
                     <Chakra.Text color="gray.500" fontSize="xs">
                       Card #{index + 1}
                     </Chakra.Text>
-                    <Chakra.Icon as={Icon.HiOutlineTrash} color="teal.300" />
+                    <Chakra.Icon
+                      as={Icon.HiOutlineTrash}
+                      color="teal.300"
+                      onClick={() => handleRemoveCard(card.id)}
+                    />
                   </Chakra.HStack>
 
                   <Chakra.Input
@@ -303,6 +313,7 @@ export const PageCarousel = () => {
               colorScheme="teal"
               borderRadius="0"
               onClick={handleDownload}
+              isDisabled={!isDownloadEnabled}
             >
               Download
             </Chakra.Button>
