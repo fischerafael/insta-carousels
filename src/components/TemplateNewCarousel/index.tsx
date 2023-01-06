@@ -22,6 +22,10 @@ export const TemplateNewCarousel = ({
 
   const [isCardVisible, setCardVisible] = useState(false);
 
+  const handleToggleCardVisible = (boolean: boolean) => {
+    setCardVisible(() => boolean);
+  };
+
   return (
     <Chakra.Grid
       w="full"
@@ -33,9 +37,32 @@ export const TemplateNewCarousel = ({
     >
       <Chakra.Grid h="10vh">{header}</Chakra.Grid>
 
-      <Button position="fixed" left="8" bottom="8" zIndex="100" shadow="xl">
-        Preview Carousel
-      </Button>
+      {breakpoint === "sm" && !isCardVisible && (
+        <Button
+          colorScheme="teal"
+          position="fixed"
+          left="8"
+          bottom="8"
+          zIndex="100"
+          shadow="xl"
+          onClick={() => handleToggleCardVisible(true)}
+        >
+          Preview Carousel
+        </Button>
+      )}
+      {breakpoint === "sm" && isCardVisible && (
+        <Button
+          colorScheme="teal"
+          position="fixed"
+          left="8"
+          bottom="8"
+          zIndex="100"
+          shadow="xl"
+          onClick={() => handleToggleCardVisible(false)}
+        >
+          Edit Carousel
+        </Button>
+      )}
 
       <Chakra.Grid bg="gray.900" w="full" justifyItems="center">
         <Chakra.Grid
