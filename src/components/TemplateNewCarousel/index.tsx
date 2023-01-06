@@ -33,7 +33,9 @@ export const TemplateNewCarousel = ({
     >
       <Chakra.Grid h="10vh">{header}</Chakra.Grid>
 
-      <Button>Preview Carousel</Button>
+      <Button position="fixed" left="8" bottom="8" zIndex="100" shadow="xl">
+        Preview Carousel
+      </Button>
 
       <Chakra.Grid bg="gray.900" w="full" justifyItems="center">
         <Chakra.Grid
@@ -65,6 +67,7 @@ export const TemplateNewCarousel = ({
                     borderRadius: "24px",
                   },
                 }}
+                pb="16"
               >
                 {leftSection}
               </Chakra.Grid>
@@ -107,6 +110,7 @@ export const TemplateNewCarousel = ({
                   borderRadius: "24px",
                 },
               }}
+              pb="16"
             >
               {leftSection}
             </Chakra.Grid>
