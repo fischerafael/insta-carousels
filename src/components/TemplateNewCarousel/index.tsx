@@ -1,5 +1,6 @@
 import React, { ReactElement } from "react";
 import * as Chakra from "@chakra-ui/react";
+import { useBreakpointValue } from "@chakra-ui/react";
 
 interface ITemplateNewCarousel {
   header: ReactElement;
@@ -12,6 +13,15 @@ export const TemplateNewCarousel = ({
   leftSection,
   rightSection,
 }: ITemplateNewCarousel) => {
+  const breakpoint = useBreakpointValue({
+    base: "sm",
+    md: "md",
+    lg: "lg",
+    xl: "xl",
+  });
+
+  console.log(breakpoint);
+
   return (
     <Chakra.Grid
       w="full"
@@ -27,7 +37,9 @@ export const TemplateNewCarousel = ({
           h="full"
           maxW="container.lg"
           w="full"
-          gridTemplateColumns="1fr 2fr"
+          gridTemplateColumns={
+            breakpoint === "sm" ? "1fr" : ["1fr", "1fr", "2fr 3fr", "1fr 2fr"]
+          }
         >
           <Chakra.Grid
             w="full"
