@@ -71,7 +71,7 @@ export const PageCarousel = () => {
 
       console.log("outside loop");
 
-      pdf.save("print.pdf");
+      pdf.save(`instant-carousel-${state.authorName}.pdf`);
     } catch (e) {
       console.log(e);
     }
