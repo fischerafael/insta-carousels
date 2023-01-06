@@ -20,6 +20,8 @@ export const TemplateNewCarousel = ({
     xl: "xl",
   });
 
+  const [isCardVisible, setCardVisible] = useState(true);
+
   if (breakpoint === "sm")
     return (
       <Chakra.Grid
@@ -38,45 +40,47 @@ export const TemplateNewCarousel = ({
             w="full"
             gridTemplateColumns="1fr"
           >
-            <Chakra.Grid
-              w="full"
-              overflowY="auto"
-              h="90vh"
-              css={{
-                "&::-webkit-scrollbar": {
-                  width: "4px",
-                },
-                "&::-webkit-scrollbar-track": {
-                  width: "6px",
-                },
-                "&::-webkit-scrollbar-thumb": {
-                  background: "#1A202C",
-                  borderRadius: "24px",
-                },
-              }}
-            >
-              {leftSection}
-            </Chakra.Grid>
-
-            <Chakra.Grid
-              w="full"
-              overflowY="auto"
-              h="90vh"
-              css={{
-                "&::-webkit-scrollbar": {
-                  width: "4px",
-                },
-                "&::-webkit-scrollbar-track": {
-                  width: "6px",
-                },
-                "&::-webkit-scrollbar-thumb": {
-                  background: "#1A202C",
-                  borderRadius: "24px",
-                },
-              }}
-            >
-              {rightSection}
-            </Chakra.Grid>
+            {isCardVisible ? (
+              <Chakra.Grid
+                w="full"
+                overflowY="auto"
+                h="90vh"
+                css={{
+                  "&::-webkit-scrollbar": {
+                    width: "4px",
+                  },
+                  "&::-webkit-scrollbar-track": {
+                    width: "6px",
+                  },
+                  "&::-webkit-scrollbar-thumb": {
+                    background: "#1A202C",
+                    borderRadius: "24px",
+                  },
+                }}
+              >
+                {rightSection}
+              </Chakra.Grid>
+            ) : (
+              <Chakra.Grid
+                w="full"
+                overflowY="auto"
+                h="90vh"
+                css={{
+                  "&::-webkit-scrollbar": {
+                    width: "4px",
+                  },
+                  "&::-webkit-scrollbar-track": {
+                    width: "6px",
+                  },
+                  "&::-webkit-scrollbar-thumb": {
+                    background: "#1A202C",
+                    borderRadius: "24px",
+                  },
+                }}
+              >
+                {leftSection}
+              </Chakra.Grid>
+            )}
           </Chakra.Grid>
         </Chakra.Grid>
       </Chakra.Grid>
