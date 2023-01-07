@@ -127,6 +127,26 @@ export const PageCarousel = () => {
     }));
   };
 
+  const handleMoveCardToPreviousIndex = (currentIndex: number) => {
+    const previousItemIndex = currentIndex - 1;
+
+    const updatedArray = state.cards.map((card, index) => {
+      if (previousItemIndex === index) {
+        return state.cards[currentIndex];
+      }
+      if (currentIndex === index) {
+        return state.cards[previousItemIndex];
+      }
+      return card;
+    });
+
+    setState((prev) => ({ ...prev, cards: updatedArray }));
+  };
+
+  const handleMoveCardToNextIndex = (currentIndex: number) => {
+    if (currentIndex === state.cards.length - 1) return;
+  };
+
   const lastItemOnCardArray = state.cards[state.cards.length - 1];
   const isHandlAddCardEnabled =
     !!lastItemOnCardArray.content && !!lastItemOnCardArray.title;
@@ -249,6 +269,7 @@ export const PageCarousel = () => {
                       borderRadius="0"
                       variant="ghost"
                       icon={<Icon.HiOutlineChevronUp />}
+                      onClick={() => handleMoveCardToPreviousIndex(index)}
                     />
 
                     <IconButton
@@ -258,6 +279,7 @@ export const PageCarousel = () => {
                       borderRadius="0"
                       variant="ghost"
                       icon={<Icon.HiOutlineChevronDown />}
+                      onClick={() => handleMoveCardToNextIndex(index)}
                     />
                   </Chakra.VStack>
                 </Chakra.HStack>
