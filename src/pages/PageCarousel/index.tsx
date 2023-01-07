@@ -225,7 +225,7 @@ export const PageCarousel = () => {
             </Chakra.Text>
 
             <Chakra.Grid w="full" gap="8">
-              {state.cards.map((card, index) => (
+              {state.cards.map((card, index, array) => (
                 <Chakra.HStack
                   key={index}
                   w="full"
@@ -283,6 +283,7 @@ export const PageCarousel = () => {
                       variant="ghost"
                       icon={<Icon.HiOutlineChevronUp />}
                       onClick={() => handleMoveCard(index, "previous")}
+                      isDisabled={index === 0 ? true : false}
                     />
 
                     <IconButton
@@ -293,6 +294,7 @@ export const PageCarousel = () => {
                       variant="ghost"
                       icon={<Icon.HiOutlineChevronDown />}
                       onClick={() => handleMoveCard(index, "next")}
+                      isDisabled={index === array.length - 1 ? true : false}
                     />
                   </Chakra.VStack>
                 </Chakra.HStack>
