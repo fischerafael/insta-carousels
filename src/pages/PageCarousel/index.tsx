@@ -120,6 +120,10 @@ export const PageCarousel = () => {
   const isHandlAddCardEnabled = !!state.content && !!state.title;
   const isDownloadEnabled = state.cards.length !== 0;
 
+  const calculateWords = (string: string): number => {
+    return string.length || 0;
+  };
+
   return (
     <TemplateNewCarousel
       header={
