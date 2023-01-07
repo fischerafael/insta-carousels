@@ -124,6 +124,15 @@ export const PageCarousel = () => {
   const calculateWords = (string: string): number => {
     return string.length || 0;
   };
+  const formatHelperText = (stateAtt: string, maxValue: number): string =>
+    `${String(calculateWords(stateAtt))}/${maxValue}`;
+
+  const authorNameHelperText = formatHelperText(state.authorName, 30);
+  const authorHandleHelperText = formatHelperText(state.authorHandle, 30);
+  const subjectHelperText = formatHelperText(state.subject, 30);
+
+  const authorNameFocusBorderColor =
+    state.authorName.length > 30 ? "red.800" : "teal.500";
 
   return (
     <TemplateNewCarousel
@@ -133,25 +142,23 @@ export const PageCarousel = () => {
         </Chakra.Grid>
       }
       leftSection={
-        <Chakra.Grid w="full" gap="16" p="8">
+        <Chakra.Grid w="full" gap="4" p="8">
           <Chakra.Grid w="full" justifyItems="flex-start" gap="4">
             <Chakra.Text fontSize="xs" fontWeight="bold">
               1. Author
             </Chakra.Text>
-            <Input label="Author Name" variant="filled" />
-            <Chakra.Input
-              placeholder="Author Name"
-              variant="flushed"
-              size="xs"
+            <Input
+              label="Author Name"
               value={state.authorName}
               onChange={(e) => handleOnChange("authorName", e.target.value)}
+              helperText={authorNameHelperText}
+              focusBorderColor={authorNameFocusBorderColor}
             />
-            <Chakra.Input
-              placeholder="Author Handle"
-              variant="flushed"
-              size="xs"
+            <Input
+              label="Author Handle"
               value={state.authorHandle}
               onChange={(e) => handleOnChange("authorHandle", e.target.value)}
+              helperText={authorHandleHelperText}
             />
           </Chakra.Grid>
 
@@ -159,17 +166,15 @@ export const PageCarousel = () => {
             <Chakra.Text fontSize="xs" fontWeight="bold">
               2. Subject
             </Chakra.Text>
-
-            <Chakra.Input
-              placeholder="Subject"
-              variant="flushed"
-              size="xs"
+            <Input
+              label="Subject"
               value={state.subject}
               onChange={(e) => handleOnChange("subject", e.target.value)}
+              helperText={subjectHelperText}
             />
           </Chakra.Grid>
 
-          <Chakra.Grid w="full" justifyItems="flex-start" gap="8">
+          <Chakra.Grid w="full" justifyItems="flex-start" gap="4">
             <Chakra.Text fontSize="xs" fontWeight="bold">
               3. Content
             </Chakra.Text>
@@ -186,7 +191,7 @@ export const PageCarousel = () => {
                 >
                   <Chakra.HStack w="full" justify="space-between">
                     <Chakra.Text color="gray.500" fontSize="xs">
-                      Card #{index + 1}
+                      Card {index + 1}/{state.cards.length}
                     </Chakra.Text>
                     <Chakra.Icon
                       as={Icon.HiOutlineTrash}
@@ -195,23 +200,24 @@ export const PageCarousel = () => {
                     />
                   </Chakra.HStack>
 
-                  <Chakra.Input
-                    placeholder="Title"
-                    variant="flushed"
+                  <Input
+                    label="Title"
                     value={card.title}
-                    size="xs"
                     onChange={(e) =>
                       handleEditCard(card.id, "title", e.target.value)
                     }
+                    helperText={formatHelperText(card.title!, 30)}
+                    bg="gray.900"
                   />
-                  <Chakra.Textarea
-                    placeholder="Content"
-                    variant="flushed"
-                    size="xs"
+
+                  <Input
+                    label="Title"
                     value={card.content}
                     onChange={(e) =>
                       handleEditCard(card.id, "content", e.target.value)
                     }
+                    helperText={formatHelperText(card.content!, 30)}
+                    bg="gray.900"
                   />
                 </Chakra.VStack>
               ))}

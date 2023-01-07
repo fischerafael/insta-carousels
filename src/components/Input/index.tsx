@@ -18,6 +18,7 @@ export const Input = ({ label, helperText, ...props }: InputProps) => {
         borderRadius="0"
         fontSize="xs"
         focusBorderColor="teal.500"
+        variant="filled"
         {...props}
       />
       <Chakra.FormHelperText fontSize="xs" color="gray.500">
