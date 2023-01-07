@@ -8,6 +8,7 @@ import { TemplateNewCarousel } from "../../components/TemplateNewCarousel";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { generateUUID } from "../../utils/generate-uuid";
+import { Input } from "../../components/Input";
 
 interface IState {
   authorName: string;
@@ -137,6 +138,7 @@ export const PageCarousel = () => {
             <Chakra.Text fontSize="xs" fontWeight="bold">
               1. Author
             </Chakra.Text>
+            <Input label="Author Name" variant="filled" />
             <Chakra.Input
               placeholder="Author Name"
               variant="flushed"
@@ -211,15 +213,6 @@ export const PageCarousel = () => {
                       handleEditCard(card.id, "content", e.target.value)
                     }
                   />
-                  {/* <Chakra.Input
-                    placeholder="Background Image URL"
-                    variant="flushed"
-                    size="xs"
-                    value={card.bgImage}
-                    onChange={(e) =>
-                      handleEditCard(card.id, "bgImage", e.target.value)
-                    }
-                  /> */}
                 </Chakra.VStack>
               ))}
             </Chakra.Grid>

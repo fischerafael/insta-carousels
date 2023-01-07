@@ -9,9 +9,20 @@ interface InputProps extends Chakra.InputProps {
 export const Input = ({ label, helperText, ...props }: InputProps) => {
   return (
     <Chakra.FormControl w="full">
-      <Chakra.FormLabel>{label}</Chakra.FormLabel>
-      <Chakra.Input {...props} />
-      <Chakra.FormHelperText>{helperText}</Chakra.FormHelperText>
+      <Chakra.FormLabel fontSize="xs" color="gray.500">
+        {label}
+      </Chakra.FormLabel>
+      <Chakra.Input
+        bg="gray.800"
+        _hover={{ bg: "gray.800" }}
+        borderRadius="0"
+        fontSize="xs"
+        focusBorderColor="teal.500"
+        {...props}
+      />
+      <Chakra.FormHelperText fontSize="xs" color="gray.500">
+        {helperText}
+      </Chakra.FormHelperText>
     </Chakra.FormControl>
   );
 };
