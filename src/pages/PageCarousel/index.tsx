@@ -137,6 +137,7 @@ export const PageCarousel = () => {
     const updatedArr =
       prevOrNext === "previous"
         ? state.cards.map((card, index) => {
+            if (previousItemIndex < 0) return card;
             if (previousItemIndex === index) {
               return state.cards[currentIndex];
             }
@@ -146,6 +147,7 @@ export const PageCarousel = () => {
             return card;
           })
         : state.cards.map((card, index) => {
+            if (nextItemIndex === state.cards.length) return card;
             if (currentIndex === index) {
               return state.cards[nextItemIndex];
             }
@@ -156,10 +158,6 @@ export const PageCarousel = () => {
           });
 
     setState((prev) => ({ ...prev, cards: updatedArr }));
-  };
-
-  const handleMoveCardToNextIndex = (currentIndex: number) => {
-    if (currentIndex === state.cards.length - 1) return;
   };
 
   const lastItemOnCardArray = state.cards[state.cards.length - 1];
