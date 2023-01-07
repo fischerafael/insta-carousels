@@ -127,20 +127,35 @@ export const PageCarousel = () => {
     }));
   };
 
-  const handleMoveCardToPreviousIndex = (currentIndex: number) => {
+  const handleMoveCard = (
+    currentIndex: number,
+    prevOrNext: "previous" | "next"
+  ) => {
     const previousItemIndex = currentIndex - 1;
+    const nextItemIndex = currentIndex + 1;
 
-    const updatedArray = state.cards.map((card, index) => {
-      if (previousItemIndex === index) {
-        return state.cards[currentIndex];
-      }
-      if (currentIndex === index) {
-        return state.cards[previousItemIndex];
-      }
-      return card;
-    });
+    const updatedArr =
+      prevOrNext === "previous"
+        ? state.cards.map((card, index) => {
+            if (previousItemIndex === index) {
+              return state.cards[currentIndex];
+            }
+            if (currentIndex === index) {
+              return state.cards[previousItemIndex];
+            }
+            return card;
+          })
+        : state.cards.map((card, index) => {
+            if (currentIndex === index) {
+              return state.cards[nextItemIndex];
+            }
+            if (nextItemIndex === index) {
+              return state.cards[currentIndex];
+            }
+            return card;
+          });
 
-    setState((prev) => ({ ...prev, cards: updatedArray }));
+    setState((prev) => ({ ...prev, cards: updatedArr }));
   };
 
   const handleMoveCardToNextIndex = (currentIndex: number) => {
@@ -269,7 +284,7 @@ export const PageCarousel = () => {
                       borderRadius="0"
                       variant="ghost"
                       icon={<Icon.HiOutlineChevronUp />}
-                      onClick={() => handleMoveCardToPreviousIndex(index)}
+                      onClick={() => handleMoveCard(index, "previous")}
                     />
 
                     <IconButton
@@ -279,7 +294,7 @@ export const PageCarousel = () => {
                       borderRadius="0"
                       variant="ghost"
                       icon={<Icon.HiOutlineChevronDown />}
-                      onClick={() => handleMoveCardToNextIndex(index)}
+                      onClick={() => handleMoveCard(index, "next")}
                     />
                   </Chakra.VStack>
                 </Chakra.HStack>
