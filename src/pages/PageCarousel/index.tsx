@@ -12,6 +12,7 @@ import { Input, TextArea } from "../../components/Input";
 import { IconButton } from "@chakra-ui/react";
 
 interface IState {
+  isLoading: boolean;
   authorName: string;
   authorHandle: string;
   authorAvatarURL: string;
@@ -24,6 +25,7 @@ interface IState {
 
 export const PageCarousel = () => {
   const [state, setState] = React.useState<IState>({
+    isLoading: false,
     authorName: "Rafael Fischer",
     authorHandle: "fischerafael",
     authorAvatarURL: "",
@@ -52,6 +54,7 @@ export const PageCarousel = () => {
 
   const handleDownload = async () => {
     try {
+      setState((prev) => ({ ...prev, isLoading: true }));
       const pdf = new jsPDF({
         unit: "px",
         compress: true,
@@ -83,6 +86,8 @@ export const PageCarousel = () => {
       pdf.save(`instant-carousel-${state.authorName}.pdf`);
     } catch (e) {
       console.log(e);
+    } finally {
+      setState((prev) => ({ ...prev, isLoading: false }));
     }
   };
 
@@ -302,15 +307,7 @@ export const PageCarousel = () => {
               ))}
             </Chakra.Grid>
 
-            <Chakra.HStack w="full" justify="space-between">
-              <Chakra.Button
-                colorScheme="teal"
-                borderRadius="0"
-                isDisabled={!isDownloadEnabled}
-                onClick={handleDownload}
-              >
-                Download Carousel
-              </Chakra.Button>
+            <Chakra.HStack w="full" justify="flex-end">
               <Chakra.Button
                 colorScheme="teal"
                 borderRadius="0"
@@ -362,6 +359,7 @@ export const PageCarousel = () => {
               borderRadius="0"
               onClick={handleDownload}
               isDisabled={!isDownloadEnabled}
+              isLoading={state.isLoading}
             >
               Download
             </Chakra.Button>
