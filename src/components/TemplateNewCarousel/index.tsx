@@ -14,7 +14,6 @@ export const TemplateNewCarousel = ({
   rightSection,
 }: ITemplateNewCarousel) => {
   const breakpoint = useBreakpointValue({
-    base: "sm",
     md: "md",
     lg: "lg",
     xl: "xl",
@@ -37,7 +36,7 @@ export const TemplateNewCarousel = ({
     >
       <Chakra.Grid h="10vh">{header}</Chakra.Grid>
 
-      {breakpoint === "sm" && !isCardVisible && (
+      {!isCardVisible && (
         <Button
           colorScheme="teal"
           position="fixed"
@@ -45,12 +44,15 @@ export const TemplateNewCarousel = ({
           bottom="8"
           zIndex="100"
           shadow="xl"
+          borderRadius="0"
+          size="sm"
+          fontSize="xs"
           onClick={() => handleToggleCardVisible(true)}
         >
           Preview Carousel
         </Button>
       )}
-      {breakpoint === "sm" && isCardVisible && (
+      {isCardVisible && (
         <Button
           colorScheme="teal"
           position="fixed"
@@ -58,6 +60,9 @@ export const TemplateNewCarousel = ({
           bottom="8"
           zIndex="100"
           shadow="xl"
+          borderRadius="0"
+          size="sm"
+          fontSize="xs"
           onClick={() => handleToggleCardVisible(false)}
         >
           Edit Carousel
@@ -70,14 +75,15 @@ export const TemplateNewCarousel = ({
           maxW="container.lg"
           w="full"
           gridTemplateColumns="1fr"
+          justifyItems="center"
         >
-          {breakpoint !== "sm" && (
-            <Chakra.Grid
-              h="full"
-              maxW="container.lg"
-              w="full"
-              gridTemplateColumns={["1fr", "1fr", "2fr 3fr", "1fr 2fr"]}
-            >
+          <Chakra.Grid
+            h="full"
+            maxW="container.md"
+            w="full"
+            gridTemplateColumns={["1fr"]}
+          >
+            {!isCardVisible && (
               <Chakra.Grid
                 w="full"
                 overflowY="auto"
@@ -98,7 +104,9 @@ export const TemplateNewCarousel = ({
               >
                 {leftSection}
               </Chakra.Grid>
+            )}
 
+            {isCardVisible && (
               <Chakra.Grid
                 w="full"
                 overflowY="auto"
@@ -118,51 +126,8 @@ export const TemplateNewCarousel = ({
               >
                 {rightSection}
               </Chakra.Grid>
-            </Chakra.Grid>
-          )}
-          {breakpoint === "sm" && !isCardVisible && (
-            <Chakra.Grid
-              w="full"
-              overflowY="auto"
-              h="90vh"
-              css={{
-                "&::-webkit-scrollbar": {
-                  width: "4px",
-                },
-                "&::-webkit-scrollbar-track": {
-                  width: "6px",
-                },
-                "&::-webkit-scrollbar-thumb": {
-                  background: "#1A202C",
-                  borderRadius: "24px",
-                },
-              }}
-              pb="16"
-            >
-              {leftSection}
-            </Chakra.Grid>
-          )}
-          {breakpoint === "sm" && isCardVisible && (
-            <Chakra.Grid
-              w="full"
-              overflowY="auto"
-              h="90vh"
-              css={{
-                "&::-webkit-scrollbar": {
-                  width: "4px",
-                },
-                "&::-webkit-scrollbar-track": {
-                  width: "6px",
-                },
-                "&::-webkit-scrollbar-thumb": {
-                  background: "#1A202C",
-                  borderRadius: "24px",
-                },
-              }}
-            >
-              {rightSection}
-            </Chakra.Grid>
-          )}
+            )}
+          </Chakra.Grid>
         </Chakra.Grid>
       </Chakra.Grid>
     </Chakra.Grid>

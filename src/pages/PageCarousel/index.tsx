@@ -235,7 +235,7 @@ export const PageCarousel = () => {
                     onChange={(e) =>
                       handleEditCard(card.id, "content", e.target.value)
                     }
-                    helperText={formatHelperText(card.content!, 30)}
+                    helperText={formatHelperText(card.content!, 200)}
                     _focus={{ bg: "gray.900" }}
                     _hover={{ bg: "gray.900" }}
                     bg="gray.900"
@@ -259,7 +259,7 @@ export const PageCarousel = () => {
         </Chakra.Grid>
       }
       rightSection={
-        <Chakra.Grid w="full" gap="8" p="8" justifyItems="end">
+        <Chakra.Grid w="full" gap="8" p="8" justifyItems="center">
           {state.cards.length !== 0 &&
             state.cards.map((card, cardIndex) => {
               return (

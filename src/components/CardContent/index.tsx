@@ -25,7 +25,7 @@ export const CardContent = forwardRef((props: ICard, ref) => {
         // bg="linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.75) 100%)"
       >
         <Chakra.VStack w="full" h="full" align="flex-start" spacing="8">
-          <Chakra.Text color="gray.400">
+          <Chakra.Text color="gray.500">
             {props.subject || "Subject"}
           </Chakra.Text>
           <Chakra.Text
@@ -36,7 +36,7 @@ export const CardContent = forwardRef((props: ICard, ref) => {
           >
             {props.title || "Card Title"}
           </Chakra.Text>
-          <Chakra.Text lineHeight="10" fontSize="lg">
+          <Chakra.Text lineHeight="2" fontSize="lg">
             {props.content ||
               "The Card Content goes in this place. This section is able to hold a full medium-sized paragraph."}
           </Chakra.Text>
@@ -48,7 +48,7 @@ export const CardContent = forwardRef((props: ICard, ref) => {
             <Chakra.Text color="white" fontSize="sm">
               {props.authorName}
             </Chakra.Text>{" "}
-            <Chakra.Text color="gray.400" fontSize="xs">
+            <Chakra.Text color="gray.500" fontSize="xs">
               @{props.authorHandle}
             </Chakra.Text>
           </Chakra.VStack>
