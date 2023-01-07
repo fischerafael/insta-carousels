@@ -147,15 +147,6 @@ export const PageCarousel = () => {
               value={state.authorHandle}
               onChange={(e) => handleOnChange("authorHandle", e.target.value)}
             />
-            {/* <Chakra.Input
-              placeholder="Author Avatar URL"
-              variant="flushed"
-              size="xs"
-              value={state.authorAvatarURL}
-              onChange={(e) =>
-                handleOnChange("authorAvatarURL", e.target.value)
-              }
-            /> */}
           </Chakra.Grid>
 
           <Chakra.Grid w="full" justifyItems="flex-start" gap="4">
@@ -252,13 +243,6 @@ export const PageCarousel = () => {
                 value={state.content}
                 onChange={(e) => handleOnChange("content", e.target.value)}
               />
-              {/* <Chakra.Input
-                placeholder="Background Image URL"
-                variant="flushed"
-                size="xs"
-                value={state.bgImage}
-                onChange={(e) => handleOnChange("bgImage", e.target.value)}
-              /> */}
             </Chakra.Grid>
 
             <Chakra.IconButton
