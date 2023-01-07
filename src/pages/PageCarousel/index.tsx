@@ -30,7 +30,14 @@ export const PageCarousel = () => {
     title: "",
     content: "",
     bgImage: "",
-    cards: [],
+    cards: [
+      {
+        content: "",
+        id: generateUUID(),
+        bgImage: "",
+        title: "",
+      },
+    ],
   });
 
   const handleOnChange = (key: string, value: string) => {
@@ -97,6 +104,7 @@ export const PageCarousel = () => {
   };
 
   const handleRemoveCard = (cardId: string) => {
+    if (state.cards.length <= 1) return;
     setState((prev) => ({
       ...prev,
       cards: prev.cards.filter((card) => card.id !== cardId),
@@ -118,8 +126,11 @@ export const PageCarousel = () => {
     }));
   };
 
-  const isHandlAddCardEnabled = !!state.content && !!state.title;
+  const lastItemOnCardArray = state.cards[state.cards.length - 1];
+  const isHandlAddCardEnabled =
+    !!lastItemOnCardArray.content && !!lastItemOnCardArray.title;
   const isDownloadEnabled = state.cards.length !== 0;
+  const isRemoveCardDisabled = state.cards.length <= 1;
 
   const calculateWords = (string: string): number => {
     return string.length || 0;
@@ -194,9 +205,14 @@ export const PageCarousel = () => {
                     <Chakra.Text color="gray.500" fontSize="xs">
                       Card {index + 1}/{state.cards.length}
                     </Chakra.Text>
-                    <Chakra.Icon
-                      as={Icon.HiOutlineTrash}
-                      color="teal.300"
+                    <Chakra.IconButton
+                      aria-label="Remove"
+                      colorScheme="teal"
+                      icon={<Icon.HiOutlineTrash />}
+                      color="gray.100"
+                      size="xs"
+                      borderRadius="0"
+                      isDisabled={isRemoveCardDisabled}
                       onClick={() => handleRemoveCard(card.id)}
                     />
                   </Chakra.HStack>
@@ -226,31 +242,6 @@ export const PageCarousel = () => {
                   />
                 </Chakra.VStack>
               ))}
-            </Chakra.Grid>
-            <Chakra.Grid
-              w="full"
-              justifyItems="flex-start"
-              gap="4"
-              bg="gray.800"
-              p="8"
-            >
-              <Chakra.Text color="gray.500" fontSize="xs">
-                New Card
-              </Chakra.Text>
-              <Chakra.Input
-                placeholder="Title"
-                variant="flushed"
-                value={state.title}
-                size="xs"
-                onChange={(e) => handleOnChange("title", e.target.value)}
-              />
-              <Chakra.Textarea
-                placeholder="Content"
-                variant="flushed"
-                size="xs"
-                value={state.content}
-                onChange={(e) => handleOnChange("content", e.target.value)}
-              />
             </Chakra.Grid>
 
             <Chakra.IconButton
