@@ -9,6 +9,7 @@ import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { generateUUID } from "../../utils/generate-uuid";
 import { Input, TextArea } from "../../components/Input";
+import { IconButton } from "@chakra-ui/react";
 
 interface IState {
   authorName: string;
@@ -192,55 +193,74 @@ export const PageCarousel = () => {
 
             <Chakra.Grid w="full" gap="8">
               {state.cards.map((card, index) => (
-                <Chakra.VStack
+                <Chakra.HStack
                   key={index}
                   w="full"
                   align="flex-start"
-                  spacing="4"
+                  spacing="2"
                   bg="gray.800"
-                  p="8"
-                  pb="12"
                 >
-                  <Chakra.HStack w="full" justify="space-between">
-                    <Chakra.Text color="gray.500" fontSize="xs">
-                      Card {index + 1}/{state.cards.length}
-                    </Chakra.Text>
-                    <Chakra.IconButton
-                      aria-label="Remove"
-                      colorScheme="teal"
-                      icon={<Icon.HiOutlineTrash />}
-                      color="gray.100"
-                      size="xs"
-                      borderRadius="0"
-                      isDisabled={isRemoveCardDisabled}
-                      onClick={() => handleRemoveCard(card.id)}
+                  <Chakra.VStack w="full" spacing="0" py="8" pl="8">
+                    <Chakra.HStack w="full" justify="space-between">
+                      <Chakra.Text color="gray.500" fontSize="xs">
+                        Card {index + 1}/{state.cards.length}
+                      </Chakra.Text>
+                      <Chakra.IconButton
+                        aria-label="Remove"
+                        colorScheme="teal"
+                        icon={<Icon.HiOutlineTrash />}
+                        color="gray.100"
+                        size="xs"
+                        borderRadius="0"
+                        isDisabled={isRemoveCardDisabled}
+                        onClick={() => handleRemoveCard(card.id)}
+                      />
+                    </Chakra.HStack>
+
+                    <Input
+                      label="Title"
+                      value={card.title}
+                      onChange={(e) =>
+                        handleEditCard(card.id, "title", e.target.value)
+                      }
+                      helperText={formatHelperText(card.title!, 30)}
+                      _focus={{ bg: "gray.900" }}
+                      _hover={{ bg: "gray.900" }}
+                      bg="gray.900"
                     />
-                  </Chakra.HStack>
 
-                  <Input
-                    label="Title"
-                    value={card.title}
-                    onChange={(e) =>
-                      handleEditCard(card.id, "title", e.target.value)
-                    }
-                    helperText={formatHelperText(card.title!, 30)}
-                    _focus={{ bg: "gray.900" }}
-                    _hover={{ bg: "gray.900" }}
-                    bg="gray.900"
-                  />
+                    <TextArea
+                      label="Content"
+                      value={card.content}
+                      onChange={(e) =>
+                        handleEditCard(card.id, "content", e.target.value)
+                      }
+                      helperText={formatHelperText(card.content!, 200)}
+                      _focus={{ bg: "gray.900" }}
+                      _hover={{ bg: "gray.900" }}
+                      bg="gray.900"
+                    />
+                  </Chakra.VStack>
+                  <Chakra.VStack h="full" justify="space-between">
+                    <IconButton
+                      size="xs"
+                      aria-label="move up"
+                      colorScheme="teal"
+                      borderRadius="0"
+                      variant="ghost"
+                      icon={<Icon.HiOutlineChevronUp />}
+                    />
 
-                  <TextArea
-                    label="Content"
-                    value={card.content}
-                    onChange={(e) =>
-                      handleEditCard(card.id, "content", e.target.value)
-                    }
-                    helperText={formatHelperText(card.content!, 200)}
-                    _focus={{ bg: "gray.900" }}
-                    _hover={{ bg: "gray.900" }}
-                    bg="gray.900"
-                  />
-                </Chakra.VStack>
+                    <IconButton
+                      size="xs"
+                      aria-label="move up"
+                      colorScheme="teal"
+                      borderRadius="0"
+                      variant="ghost"
+                      icon={<Icon.HiOutlineChevronDown />}
+                    />
+                  </Chakra.VStack>
+                </Chakra.HStack>
               ))}
             </Chakra.Grid>
 
