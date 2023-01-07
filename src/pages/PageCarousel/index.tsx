@@ -8,7 +8,7 @@ import { TemplateNewCarousel } from "../../components/TemplateNewCarousel";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { generateUUID } from "../../utils/generate-uuid";
-import { Input } from "../../components/Input";
+import { Input, TextArea } from "../../components/Input";
 
 interface IState {
   authorName: string;
@@ -188,6 +188,7 @@ export const PageCarousel = () => {
                   spacing="4"
                   bg="gray.800"
                   p="8"
+                  pb="12"
                 >
                   <Chakra.HStack w="full" justify="space-between">
                     <Chakra.Text color="gray.500" fontSize="xs">
@@ -207,16 +208,20 @@ export const PageCarousel = () => {
                       handleEditCard(card.id, "title", e.target.value)
                     }
                     helperText={formatHelperText(card.title!, 30)}
+                    _focus={{ bg: "gray.900" }}
+                    _hover={{ bg: "gray.900" }}
                     bg="gray.900"
                   />
 
-                  <Input
-                    label="Title"
+                  <TextArea
+                    label="Content"
                     value={card.content}
                     onChange={(e) =>
                       handleEditCard(card.id, "content", e.target.value)
                     }
                     helperText={formatHelperText(card.content!, 30)}
+                    _focus={{ bg: "gray.900" }}
+                    _hover={{ bg: "gray.900" }}
                     bg="gray.900"
                   />
                 </Chakra.VStack>
