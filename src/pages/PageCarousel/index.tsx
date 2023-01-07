@@ -163,7 +163,8 @@ export const PageCarousel = () => {
   const lastItemOnCardArray = state.cards[state.cards.length - 1];
   const isHandlAddCardEnabled =
     !!lastItemOnCardArray.content && !!lastItemOnCardArray.title;
-  const isDownloadEnabled = state.cards.length !== 0;
+  const isDownloadEnabled =
+    !!lastItemOnCardArray.content && !!lastItemOnCardArray.title;
   const isRemoveCardDisabled = state.cards.length <= 1;
 
   const calculateWords = (string: string): number => {
@@ -301,17 +302,24 @@ export const PageCarousel = () => {
               ))}
             </Chakra.Grid>
 
-            <Chakra.IconButton
-              aria-label="Add Card"
-              colorScheme="teal"
-              as={Icon.HiOutlinePlus}
-              cursor="pointer"
-              w="full"
-              size="xs"
-              borderRadius="0"
-              isDisabled={!isHandlAddCardEnabled}
-              onClick={handleAddCard}
-            />
+            <Chakra.HStack w="full" justify="space-between">
+              <Chakra.Button
+                colorScheme="teal"
+                borderRadius="0"
+                isDisabled={!isDownloadEnabled}
+                onClick={handleDownload}
+              >
+                Download Carousel
+              </Chakra.Button>
+              <Chakra.Button
+                colorScheme="teal"
+                borderRadius="0"
+                isDisabled={!isHandlAddCardEnabled}
+                onClick={handleAddCard}
+              >
+                Add Card
+              </Chakra.Button>
+            </Chakra.HStack>
           </Chakra.Grid>
         </Chakra.Grid>
       }
