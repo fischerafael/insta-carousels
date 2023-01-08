@@ -237,11 +237,13 @@ export const PageCarousel = () => {
                   w="full"
                   align="flex-start"
                   spacing="2"
+                  border="1px"
+                  borderColor="gray.700"
                   bg="gray.800"
                 >
                   <Chakra.VStack w="full" spacing="0" py="8" pl="8">
                     <Chakra.HStack w="full" justify="space-between">
-                      <Chakra.Text color="gray.500" fontSize="xs">
+                      <Chakra.Text color="gray.300" fontSize="xs">
                         Card {index + 1}/{state.cards.length}
                       </Chakra.Text>
                       <Chakra.IconButton

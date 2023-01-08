@@ -9,19 +9,22 @@ interface InputProps extends Chakra.InputProps {
 export const Input = ({ label, helperText, ...props }: InputProps) => {
   return (
     <Chakra.FormControl w="full">
-      <Chakra.FormLabel fontSize="xs" color="gray.500">
+      <Chakra.FormLabel fontSize="xs" color="gray.300">
         {label}
       </Chakra.FormLabel>
       <Chakra.Input
         bg="gray.800"
         _hover={{ bg: "gray.800" }}
         borderRadius="0"
-        fontSize="xs"
+        fontSize="sm"
+        p="6"
         focusBorderColor="teal.500"
         variant="filled"
+        border="1px"
+        borderColor="gray.700"
         {...props}
       />
-      <Chakra.FormHelperText fontSize="xs" color="gray.500">
+      <Chakra.FormHelperText fontSize="xs" color="gray.300">
         {helperText}
       </Chakra.FormHelperText>
     </Chakra.FormControl>
@@ -36,19 +39,22 @@ interface TextAreaProps extends Chakra.TextareaProps {
 export const TextArea = ({ label, helperText, ...props }: TextAreaProps) => {
   return (
     <Chakra.FormControl w="full">
-      <Chakra.FormLabel fontSize="xs" color="gray.500">
+      <Chakra.FormLabel fontSize="xs" color="gray.300">
         {label}
       </Chakra.FormLabel>
       <Chakra.Textarea
         bg="gray.800"
         _hover={{ bg: "gray.800" }}
         borderRadius="0"
-        fontSize="xs"
+        fontSize="sm"
         focusBorderColor="teal.500"
         variant="filled"
+        border="1px"
+        borderColor="gray.700"
+        p="6"
         {...props}
       />
-      <Chakra.FormHelperText fontSize="xs" color="gray.500">
+      <Chakra.FormHelperText fontSize="xs" color="gray.300">
         {helperText}
       </Chakra.FormHelperText>
     </Chakra.FormControl>
