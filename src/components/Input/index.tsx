@@ -52,6 +52,7 @@ export const TextArea = ({ label, helperText, ...props }: TextAreaProps) => {
         border="1px"
         borderColor="gray.700"
         p="6"
+        minH="180px"
         {...props}
       />
       <Chakra.FormHelperText fontSize="xs" color="gray.300">
