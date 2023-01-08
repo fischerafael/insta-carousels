@@ -185,7 +185,19 @@ export const PageCarousel = () => {
     <TemplateNewCarousel
       header={
         <Chakra.Grid h="10vh" w="full" maxW="container.lg" alignItems="center">
-          <Chakra.Text>InstantCarousels</Chakra.Text>
+          <Chakra.HStack w="full">
+            <Chakra.Text>
+              Instant
+              <Chakra.Text
+                as="span"
+                fontWeight="bold"
+                bgGradient="linear(to-l, teal.200, teal.600)"
+                bgClip="text"
+              >
+                Carousels
+              </Chakra.Text>
+            </Chakra.Text>
+          </Chakra.HStack>
         </Chakra.Grid>
       }
       leftSection={
