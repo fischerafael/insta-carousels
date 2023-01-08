@@ -22,7 +22,7 @@ export const TemplateHeaderMain = ({
         {header}
       </Chakra.Grid>
 
-      <Chakra.Grid bg="gray.900" w="full" justifyItems="center">
+      <Chakra.Grid bg="gray.900" w="full" justifyItems="center" px="4">
         {main}
       </Chakra.Grid>
     </Chakra.Grid>

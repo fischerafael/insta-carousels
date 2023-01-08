@@ -1,7 +1,13 @@
 import React from "react";
 import * as Chakra from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import { handleNavigateTo } from "../../utils/handleNavigateTo";
 
 export const Header = () => {
+  const { asPath } = useRouter();
+
+  const isLogged = asPath === "/app";
+
   return (
     <Chakra.HStack
       h="10vh"
@@ -21,9 +27,23 @@ export const Header = () => {
           Carousels
         </Chakra.Text>
       </Chakra.Text>
-      <Chakra.Button colorScheme="teal" borderRadius="0">
-        Log Out
-      </Chakra.Button>
+      {isLogged ? (
+        <Chakra.Button
+          colorScheme="teal"
+          borderRadius="0"
+          onClick={() => handleNavigateTo("/")}
+        >
+          Log Out
+        </Chakra.Button>
+      ) : (
+        <Chakra.Button
+          colorScheme="teal"
+          borderRadius="0"
+          onClick={() => handleNavigateTo("/app")}
+        >
+          Log In
+        </Chakra.Button>
+      )}
     </Chakra.HStack>
   );
 };
