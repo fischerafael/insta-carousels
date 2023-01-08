@@ -97,9 +97,9 @@ export const PageCarousel = () => {
       cards: [
         ...prev.cards,
         {
-          content: prev.content,
-          title: prev.title,
-          bgImage: prev.bgImage,
+          content: "",
+          title: "",
+          bgImage: "",
           id: generateUUID(),
         },
       ],
