@@ -241,7 +241,7 @@ export const PageCarousel = () => {
                   borderColor="gray.700"
                   bg="gray.800"
                 >
-                  <Chakra.VStack w="full" spacing="0" py="8" pl="8">
+                  <Chakra.VStack w="full" spacing="8" py="8" pl="8">
                     <Chakra.HStack w="full" justify="space-between">
                       <Chakra.Text color="gray.300" fontSize="xs">
                         Card {index + 1}/{state.cards.length}
