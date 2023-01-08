@@ -193,7 +193,7 @@ export const PageCarousel = () => {
         </Chakra.Grid>
       }
       leftSection={
-        <Chakra.Grid w="full" gap="4" p="8">
+        <Chakra.Grid w="full" gap="4" p="4">
           <Chakra.Grid w="full" justifyItems="flex-start" gap="4">
             <Chakra.Text fontSize="xs" fontWeight="bold">
               1. Author
