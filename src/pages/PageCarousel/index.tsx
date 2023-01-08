@@ -10,6 +10,7 @@ import html2canvas from "html2canvas";
 import { generateUUID } from "../../utils/generate-uuid";
 import { Input, TextArea } from "../../components/Input";
 import { IconButton } from "@chakra-ui/react";
+import { Header } from "../../components/Header";
 
 interface IState {
   isLoading: boolean;
@@ -183,23 +184,7 @@ export const PageCarousel = () => {
 
   return (
     <TemplateNewCarousel
-      header={
-        <Chakra.Grid h="10vh" w="full" maxW="container.lg" alignItems="center">
-          <Chakra.HStack w="full">
-            <Chakra.Text>
-              Instant
-              <Chakra.Text
-                as="span"
-                fontWeight="bold"
-                bgGradient="linear(to-l, teal.200, teal.600)"
-                bgClip="text"
-              >
-                Carousels
-              </Chakra.Text>
-            </Chakra.Text>
-          </Chakra.HStack>
-        </Chakra.Grid>
-      }
+      header={<Header />}
       leftSection={
         <Chakra.Grid w="full" gap="4" p="4">
           <Chakra.Grid w="full" justifyItems="flex-start" gap="4">

@@ -31,10 +31,11 @@ export const TemplateNewCarousel = ({
       h="100vh"
       bg="gray.900"
       color="white"
-      justifyItems="center"
       position="relative"
     >
-      <Chakra.Grid h="10vh">{header}</Chakra.Grid>
+      <Chakra.Grid h="10vh" w="full" justifyItems="center">
+        {header}
+      </Chakra.Grid>
 
       {!isCardVisible && (
         <Button
