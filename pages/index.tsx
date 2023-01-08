@@ -1,8 +1,8 @@
 import React from "react";
-import { PageCarousel } from "../src/pages/PageCarousel";
+import { PageLanding } from "../src/pages/PageLanding";
 
 const index = () => {
-  return <PageCarousel />;
+  return <PageLanding />;
 };
 
 export default index;
