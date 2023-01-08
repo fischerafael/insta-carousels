@@ -17,8 +17,6 @@ interface IState {
   authorHandle: string;
   authorAvatarURL: string;
   subject: string;
-  title: string;
-  content: string;
   bgImage: string;
   cards: ICardContent[];
 }
@@ -30,8 +28,6 @@ export const PageCarousel = () => {
     authorHandle: "fischerafael",
     authorAvatarURL: "",
     subject: "",
-    title: "",
-    content: "",
     bgImage: "",
     cards: [
       {
@@ -341,19 +337,6 @@ export const PageCarousel = () => {
                 />
               );
             })}
-
-          {state.cards.length === 0 && (
-            <CardContent
-              id={""}
-              subject={state.subject}
-              title={state.title}
-              content={state.content}
-              bgImage={state.bgImage}
-              authorName={state.authorName}
-              authorHandle={state.authorHandle}
-              authorAvatar={state.authorAvatarURL}
-            />
-          )}
 
           <Chakra.HStack w="full" justify="flex-end">
             <Chakra.Button
