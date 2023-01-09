@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
@@ -11,3 +12,22 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const provider = new GoogleAuthProvider();
+
+const auth = getAuth();
+
+export const handleLogIn = async () => {
+  try {
+    const result = await signInWithPopup(auth, provider);
+    if (!result) throw new Error("No result found");
+    // The signed-in user info.
+    const user = result.user;
+    console.log(user);
+  } catch (e: any) {
+    const errorCode = e.code;
+    const errorMessage = e.message;
+    const email = e.customData.email;
+    const credential = GoogleAuthProvider.credentialFromError(e);
+  } finally {
+  }
+};
