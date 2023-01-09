@@ -6,12 +6,13 @@ import { handleNavigateTo } from "../../utils/handleNavigateTo";
 import { handleLogIn } from "../../infra/firebase";
 
 export const PageLanding = () => {
-  //   const handleLogIn = () => {
-  //     handleNavigateTo("/app");
-  //     };
-
-  const handleLoginWithGoogle = () => {
-    handleLogIn();
+  const handleLoginWithGoogle = async () => {
+    try {
+      handleLogIn();
+      handleNavigateTo("/app");
+    } catch (e: any) {
+      console.log(e);
+    }
   };
 
   return (
