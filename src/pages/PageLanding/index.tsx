@@ -3,10 +3,15 @@ import * as Chakra from "@chakra-ui/react";
 import { Header } from "../../components/Header";
 import { TemplateHeaderMain } from "../../components/TemplateHeaderMain";
 import { handleNavigateTo } from "../../utils/handleNavigateTo";
+import { handleLogIn } from "../../infra/firebase";
 
 export const PageLanding = () => {
-  const handleLogIn = () => {
-    handleNavigateTo("/app");
+  //   const handleLogIn = () => {
+  //     handleNavigateTo("/app");
+  //     };
+
+  const handleLoginWithGoogle = () => {
+    handleLogIn();
   };
 
   return (
@@ -28,7 +33,7 @@ export const PageLanding = () => {
             colorScheme="teal"
             borderRadius="0"
             size="lg"
-            onClick={handleLogIn}
+            onClick={handleLoginWithGoogle}
           >
             Start Creating
           </Chakra.Button>
