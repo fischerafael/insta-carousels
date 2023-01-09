@@ -14,6 +14,11 @@ export const Header = () => {
     handleNavigateTo("/");
   };
 
+  React.useEffect(() => {
+    if (!!userStore.state.email) return;
+    handleLogout();
+  }, [userStore.state.email]);
+
   return (
     <Chakra.HStack
       h="10vh"
