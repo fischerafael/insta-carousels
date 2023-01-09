@@ -22,7 +22,7 @@ export const handleLogIn = async () => {
     if (!result) throw new Error("No result found");
     // The signed-in user info.
     const user = result.user;
-    console.log(user);
+    return user;
   } catch (e: any) {
     const errorCode = e.code;
     const errorMessage = e.message;

@@ -4,14 +4,34 @@ import { Header } from "../../components/Header";
 import { TemplateHeaderMain } from "../../components/TemplateHeaderMain";
 import { handleNavigateTo } from "../../utils/handleNavigateTo";
 import { handleLogIn } from "../../infra/firebase";
+import { useUserStore } from "../../store/user";
 
 export const PageLanding = () => {
+  const userStore = useUserStore();
+  const [state, setState] = React.useState({ isLoading: false });
+
+  const handleLoading = (boolean: boolean): void => {
+    setState((prev) => ({ ...prev, isLoading: boolean }));
+  };
+
   const handleLoginWithGoogle = async () => {
     try {
-      handleLogIn();
+      handleLoading(true);
+
+      const user = await handleLogIn();
+
+      userStore.methods.setUser(
+        user?.email!,
+        user?.uid!,
+        user?.displayName!,
+        user?.photoURL!
+      );
+
       handleNavigateTo("/app");
     } catch (e: any) {
       console.log(e);
+    } finally {
+      handleLoading(false);
     }
   };
 
@@ -35,6 +55,7 @@ export const PageLanding = () => {
             borderRadius="0"
             size="lg"
             onClick={handleLoginWithGoogle}
+            isLoading={state.isLoading}
           >
             Start Creating
           </Chakra.Button>
