@@ -6,8 +6,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider>
       <Head>
-        <title>Linkedin Carousels</title>
+        <title>Carousel Builder</title>
         <meta property="og:title" content="Linkedin Carousels" key="title" />
+        <link rel="shortcut icon" href="/carouselbuilder.svg" />
       </Head>
       <Component {...pageProps} />
     </ChakraProvider>
