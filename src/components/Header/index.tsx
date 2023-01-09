@@ -16,7 +16,6 @@ export const Header = () => {
       justify="space-between"
     >
       <Chakra.Text>
-        Instant
         <Chakra.Text
           as="span"
           fontWeight="bold"
@@ -24,8 +23,9 @@ export const Header = () => {
           bgClip="text"
           py="4"
         >
-          Carousels
+          Carousel
         </Chakra.Text>
+        Builder
       </Chakra.Text>
       {isLogged ? (
         <Chakra.Button
