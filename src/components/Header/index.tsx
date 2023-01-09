@@ -2,11 +2,17 @@ import React from "react";
 import * as Chakra from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { handleNavigateTo } from "../../utils/handleNavigateTo";
+import { useUserStore } from "../../store/user";
 
 export const Header = () => {
-  const { asPath } = useRouter();
+  const userStore = useUserStore();
 
-  const isLogged = asPath === "/app";
+  const isLogged = !!userStore.state.email;
+
+  const handleLogout = () => {
+    userStore.methods.setUser("", "", "", "");
+    handleNavigateTo("/");
+  };
 
   return (
     <Chakra.HStack
@@ -27,21 +33,14 @@ export const Header = () => {
         </Chakra.Text>
         Builder
       </Chakra.Text>
-      {isLogged ? (
+
+      {isLogged && (
         <Chakra.Button
           colorScheme="teal"
           borderRadius="0"
-          onClick={() => handleNavigateTo("/")}
+          onClick={handleLogout}
         >
           Log Out
-        </Chakra.Button>
-      ) : (
-        <Chakra.Button
-          colorScheme="teal"
-          borderRadius="0"
-          onClick={() => handleNavigateTo("/app")}
-        >
-          Log In
         </Chakra.Button>
       )}
     </Chakra.HStack>
