@@ -25,8 +25,8 @@ interface IState {
 export const PageCarousel = () => {
   const [state, setState] = React.useState<IState>({
     isLoading: false,
-    authorName: "Rafael Fischer",
-    authorHandle: "fischerafael",
+    authorName: "",
+    authorHandle: "",
     authorAvatarURL: "",
     subject: "",
     bgImage: "",
