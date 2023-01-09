@@ -1,6 +1,5 @@
 import React from "react";
 import * as Chakra from "@chakra-ui/react";
-import { useRouter } from "next/router";
 import { handleNavigateTo } from "../../utils/handleNavigateTo";
 import { useUserStore } from "../../store/user";
 
