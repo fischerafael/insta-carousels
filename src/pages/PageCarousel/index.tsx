@@ -206,24 +206,28 @@ export const PageCarousel = () => {
               />
             </WithCopy>
 
-            <Input
-              label="Author Handle"
-              value={state.authorHandle}
-              onChange={(e) => handleOnChange("authorHandle", e.target.value)}
-              helperText={authorHandleHelperText}
-            />
+            <WithCopy value={state.authorHandle}>
+              <Input
+                label="Author Handle"
+                value={state.authorHandle}
+                onChange={(e) => handleOnChange("authorHandle", e.target.value)}
+                helperText={authorHandleHelperText}
+              />
+            </WithCopy>
           </Chakra.Grid>
 
           <Chakra.Grid w="full" justifyItems="flex-start" gap="4">
             <Chakra.Text fontSize="xs" fontWeight="bold">
               2. Subject
             </Chakra.Text>
-            <Input
-              label="Subject"
-              value={state.subject}
-              onChange={(e) => handleOnChange("subject", e.target.value)}
-              helperText={subjectHelperText}
-            />
+            <WithCopy value={state.subject}>
+              <Input
+                label="Subject"
+                value={state.subject}
+                onChange={(e) => handleOnChange("subject", e.target.value)}
+                helperText={subjectHelperText}
+              />
+            </WithCopy>
           </Chakra.Grid>
 
           <Chakra.Grid w="full" justifyItems="flex-start" gap="4">
@@ -259,29 +263,33 @@ export const PageCarousel = () => {
                       />
                     </Chakra.HStack>
 
-                    <Input
-                      label="Title"
-                      value={card.title}
-                      onChange={(e) =>
-                        handleEditCard(card.id, "title", e.target.value)
-                      }
-                      helperText={formatHelperText(card.title!, 30)}
-                      _focus={{ bg: "gray.900" }}
-                      _hover={{ bg: "gray.900" }}
-                      bg="gray.900"
-                    />
+                    <WithCopy value={card.title}>
+                      <Input
+                        label="Title"
+                        value={card.title}
+                        onChange={(e) =>
+                          handleEditCard(card.id, "title", e.target.value)
+                        }
+                        helperText={formatHelperText(card.title!, 30)}
+                        _focus={{ bg: "gray.900" }}
+                        _hover={{ bg: "gray.900" }}
+                        bg="gray.900"
+                      />
+                    </WithCopy>
 
-                    <TextArea
-                      label="Content"
-                      value={card.content}
-                      onChange={(e) =>
-                        handleEditCard(card.id, "content", e.target.value)
-                      }
-                      helperText={formatHelperText(card.content!, 200)}
-                      _focus={{ bg: "gray.900" }}
-                      _hover={{ bg: "gray.900" }}
-                      bg="gray.900"
-                    />
+                    <WithCopy value={card.content}>
+                      <TextArea
+                        label="Content"
+                        value={card.content}
+                        onChange={(e) =>
+                          handleEditCard(card.id, "content", e.target.value)
+                        }
+                        helperText={formatHelperText(card.content!, 200)}
+                        _focus={{ bg: "gray.900" }}
+                        _hover={{ bg: "gray.900" }}
+                        bg="gray.900"
+                      />
+                    </WithCopy>
                   </Chakra.VStack>
                   <Chakra.VStack h="full" justify="space-between">
                     <IconButton
