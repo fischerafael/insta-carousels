@@ -15,6 +15,7 @@
     "firebase": "^9.15.0",
     "framer-motion": "^8.0.2",
     "html2canvas": "^1.4.1",
+    "js-cookie": "^3.0.1",
     "jspdf": "^2.5.1",
     "next": "13.1.1",
     "react": "18.2.0",
@@ -24,6 +25,7 @@
     "zustand": "^4.2.0"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.2",
     "@types/node": "18.11.18",
     "@types/react": "18.0.26",
     "@types/react-dom": "18.0.10",
