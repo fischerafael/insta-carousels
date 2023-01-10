@@ -2,32 +2,20 @@ import React from "react";
 import * as Chakra from "@chakra-ui/react";
 import { Header } from "../../components/Header";
 import { TemplateHeaderMain } from "../../components/TemplateHeaderMain";
-import { handleNavigateTo } from "../../utils/handleNavigateTo";
-import { handleLogIn } from "../../infra/firebase";
-import { useUserStore } from "../../store/useUserStore";
+import { useSession } from "../../hooks/useSession";
 
 export const PageLanding = () => {
-  const userStore = useUserStore();
+  const { handleLoginWithGoogle } = useSession();
   const [state, setState] = React.useState({ isLoading: false });
 
   const handleLoading = (boolean: boolean): void => {
     setState((prev) => ({ ...prev, isLoading: boolean }));
   };
 
-  const handleLoginWithGoogle = async () => {
+  const handleLogin = async () => {
     try {
       handleLoading(true);
-
-      const user = await handleLogIn();
-
-      userStore.methods.setUser(
-        user?.email!,
-        user?.uid!,
-        user?.displayName!,
-        user?.photoURL!
-      );
-
-      handleNavigateTo("/app");
+      handleLoginWithGoogle();
     } catch (e: any) {
       console.log(e);
     } finally {
@@ -123,7 +111,7 @@ export const PageLanding = () => {
               colorScheme="teal"
               borderRadius="0"
               size="lg"
-              onClick={handleLoginWithGoogle}
+              onClick={handleLogin}
               isLoading={state.isLoading}
             >
               Start Creating Carousels For Free
