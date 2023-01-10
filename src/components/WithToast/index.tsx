@@ -1,5 +1,6 @@
 import React from "react";
 import * as Chakra from "@chakra-ui/react";
+import * as Icon from "react-icons/hi";
 import { useToasts } from "../../hooks/useToasts";
 
 interface IWithCopy {
@@ -16,11 +17,18 @@ export const WithCopy = ({ children, value }: IWithCopy) => {
   };
 
   return (
-    <>
+    <Chakra.HStack w="full" spacing="4">
       {children}
-      <Chakra.Button onClick={() => handleCopyToClipboard(value)}>
-        Copy
-      </Chakra.Button>
-    </>
+      <Chakra.IconButton
+        size="xs"
+        colorScheme="teal"
+        variant="ghost"
+        aria-label="Copy"
+        cursor="pointer"
+        as={Icon.HiOutlineClipboardCopy}
+        _hover={{ bg: "transparent", color: "teal.300" }}
+        onClick={() => handleCopyToClipboard(value)}
+      />
+    </Chakra.HStack>
   );
 };
