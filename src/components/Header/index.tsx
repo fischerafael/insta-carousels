@@ -5,8 +5,8 @@ export const Header = ({
   onLogout,
   isLogged,
 }: {
-  onLogout: () => void;
-  isLogged: boolean;
+  onLogout?: () => void;
+  isLogged?: boolean;
 }) => {
   return (
     <Chakra.HStack

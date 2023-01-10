@@ -33,7 +33,6 @@ export const useSession = () => {
 
   React.useEffect(() => {
     const userData: any = cookie.get();
-    // if (!!userStore.state.email) return;
     if (!userData) {
       handleLogout();
       return;
