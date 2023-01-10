@@ -13,6 +13,7 @@ import { IconButton } from "@chakra-ui/react";
 import { Header } from "../../components/Header";
 import { useSession } from "../../hooks/useSession";
 import { useToasts } from "../../hooks/useToasts";
+import { WithCopy } from "../../components/WithToast";
 
 interface IState {
   isLoading: boolean;
@@ -26,7 +27,6 @@ interface IState {
 
 export const PageCarousel = () => {
   const { handleLogout, isLogged } = useSession();
-  const { displayToast } = useToasts();
 
   const [state, setState] = React.useState<IState>({
     isLoading: false,
@@ -167,11 +167,6 @@ export const PageCarousel = () => {
     setState((prev) => ({ ...prev, cards: updatedArr }));
   };
 
-  const handleCopyToClipboard = (value: string): void => {
-    navigator.clipboard.writeText(value);
-    displayToast("success", "Copied successfully");
-  };
-
   const lastItemOnCardArray = state.cards[state.cards.length - 1];
   const isHandlAddCardEnabled =
     !!lastItemOnCardArray.content && !!lastItemOnCardArray.title;
@@ -201,13 +196,16 @@ export const PageCarousel = () => {
             <Chakra.Text fontSize="xs" fontWeight="bold">
               1. Author
             </Chakra.Text>
-            <Input
-              label="Author Name"
-              value={state.authorName}
-              onChange={(e) => handleOnChange("authorName", e.target.value)}
-              helperText={authorNameHelperText}
-              focusBorderColor={authorNameFocusBorderColor}
-            />
+            <WithCopy value={state.authorName}>
+              <Input
+                label="Author Name"
+                value={state.authorName}
+                onChange={(e) => handleOnChange("authorName", e.target.value)}
+                helperText={authorNameHelperText}
+                focusBorderColor={authorNameFocusBorderColor}
+              />
+            </WithCopy>
+
             <Input
               label="Author Handle"
               value={state.authorHandle}
