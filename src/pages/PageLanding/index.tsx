@@ -4,7 +4,7 @@ import { Header } from "../../components/Header";
 import { TemplateHeaderMain } from "../../components/TemplateHeaderMain";
 import { handleNavigateTo } from "../../utils/handleNavigateTo";
 import { handleLogIn } from "../../infra/firebase";
-import { useUserStore } from "../../store/user";
+import { useUserStore } from "../../store/useUserStore";
 
 export const PageLanding = () => {
   const userStore = useUserStore();

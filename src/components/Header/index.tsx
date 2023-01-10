@@ -1,7 +1,7 @@
 import React from "react";
 import * as Chakra from "@chakra-ui/react";
 import { handleNavigateTo } from "../../utils/handleNavigateTo";
-import { useUserStore } from "../../store/user";
+import { useUserStore } from "../../store/useUserStore";
 
 export const Header = () => {
   const userStore = useUserStore();
