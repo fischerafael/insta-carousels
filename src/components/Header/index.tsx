@@ -1,23 +1,13 @@
 import React from "react";
 import * as Chakra from "@chakra-ui/react";
-import { handleNavigateTo } from "../../utils/handleNavigateTo";
-import { useUserStore } from "../../store/useUserStore";
 
-export const Header = () => {
-  const userStore = useUserStore();
-
-  const isLogged = !!userStore.state.email;
-
-  const handleLogout = () => {
-    userStore.methods.setUser("", "", "", "");
-    handleNavigateTo("/");
-  };
-
-  React.useEffect(() => {
-    if (!!userStore.state.email) return;
-    handleLogout();
-  }, [userStore.state.email]);
-
+export const Header = ({
+  onLogout,
+  isLogged,
+}: {
+  onLogout: () => void;
+  isLogged: boolean;
+}) => {
   return (
     <Chakra.HStack
       h="10vh"
@@ -39,11 +29,7 @@ export const Header = () => {
       </Chakra.Text>
 
       {isLogged && (
-        <Chakra.Button
-          colorScheme="teal"
-          borderRadius="0"
-          onClick={handleLogout}
-        >
+        <Chakra.Button colorScheme="teal" borderRadius="0" onClick={onLogout}>
           Log Out
         </Chakra.Button>
       )}

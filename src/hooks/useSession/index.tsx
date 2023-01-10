@@ -17,5 +17,17 @@ export const useSession = () => {
     handleNavigateTo("/app");
   };
 
-  return { handleLoginWithGoogle };
+  const handleLogout = () => {
+    userStore.methods.setUser("", "", "", "");
+    handleNavigateTo("/");
+  };
+
+  const isLogged = !!userStore.state.email;
+
+  React.useEffect(() => {
+    if (!!userStore.state.email) return;
+    handleLogout();
+  }, [userStore.state.email]);
+
+  return { handleLoginWithGoogle, handleLogout, isLogged };
 };

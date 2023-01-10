@@ -11,6 +11,7 @@ import { generateUUID } from "../../utils/generate-uuid";
 import { Input, TextArea } from "../../components/Input";
 import { IconButton } from "@chakra-ui/react";
 import { Header } from "../../components/Header";
+import { useSession } from "../../hooks/useSession";
 
 interface IState {
   isLoading: boolean;
@@ -23,6 +24,8 @@ interface IState {
 }
 
 export const PageCarousel = () => {
+  const { handleLogout, isLogged } = useSession();
+
   const [state, setState] = React.useState<IState>({
     isLoading: false,
     authorName: "",
@@ -184,7 +187,7 @@ export const PageCarousel = () => {
 
   return (
     <TemplateNewCarousel
-      header={<Header />}
+      header={<Header onLogout={handleLogout} isLogged={isLogged} />}
       leftSection={
         <Chakra.Grid w="full" gap="4" p="4">
           <Chakra.Grid w="full" justifyItems="flex-start" gap="4">
