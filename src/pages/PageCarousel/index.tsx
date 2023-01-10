@@ -12,6 +12,7 @@ import { Input, TextArea } from "../../components/Input";
 import { IconButton } from "@chakra-ui/react";
 import { Header } from "../../components/Header";
 import { useSession } from "../../hooks/useSession";
+import { useToasts } from "../../hooks/useToasts";
 
 interface IState {
   isLoading: boolean;
@@ -25,6 +26,7 @@ interface IState {
 
 export const PageCarousel = () => {
   const { handleLogout, isLogged } = useSession();
+  const { displayToast } = useToasts();
 
   const [state, setState] = React.useState<IState>({
     isLoading: false,
@@ -167,6 +169,7 @@ export const PageCarousel = () => {
 
   const handleCopyToClipboard = (value: string): void => {
     navigator.clipboard.writeText(value);
+    displayToast("success", "Copied successfully");
   };
 
   const lastItemOnCardArray = state.cards[state.cards.length - 1];
