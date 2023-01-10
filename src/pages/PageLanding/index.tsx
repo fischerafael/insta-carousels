@@ -78,7 +78,7 @@ export const PageLanding = () => {
               px="8"
             >
               Write the content of your carousel as if you were writing Tweets.
-              Fill your name and handle so people can find you!
+              Fill in your name and handle so people can find you!
             </Chakra.Text>
             <Chakra.Image
               px="8"
