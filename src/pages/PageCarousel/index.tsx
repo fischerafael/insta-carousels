@@ -165,6 +165,10 @@ export const PageCarousel = () => {
     setState((prev) => ({ ...prev, cards: updatedArr }));
   };
 
+  const handleCopyToClipboard = (value: string): void => {
+    navigator.clipboard.writeText(value);
+  };
+
   const lastItemOnCardArray = state.cards[state.cards.length - 1];
   const isHandlAddCardEnabled =
     !!lastItemOnCardArray.content && !!lastItemOnCardArray.title;
