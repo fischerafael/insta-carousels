@@ -1,6 +1,11 @@
 import React from "react";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
+
 import { IPageCarouselState } from "../../../../entities/IPageCarouselState";
 import { useSession } from "../../../../hooks/useSession";
+import { generateUUID } from "../../../../utils/generate-uuid";
+import { getFileName } from "../../../../utils/getFileName";
 
 export const usePageCarousel = () => {
   const { handleLogout, isLogged } = useSession();
@@ -166,5 +171,29 @@ export const usePageCarousel = () => {
   const authorNameFocusBorderColor =
     state.authorName.length > 30 ? "red.800" : "teal.500";
 
-  return <div>usePageCarousel</div>;
+  return {
+    state: {
+      isLogged: isLogged,
+      state: state,
+      authorNameHelperText: authorNameHelperText,
+      authorHandleHelperText: authorHandleHelperText,
+      authorNameFocusBorderColor: authorNameFocusBorderColor,
+      subjectHelperText: subjectHelperText,
+      isHandlAddCardEnabled: isHandlAddCardEnabled,
+      isDownloadEnabled: isDownloadEnabled,
+      isRemoveCardDisabled: isRemoveCardDisabled,
+      cardRefs: cardRefs,
+      fileName: fileName,
+    },
+    methods: {
+      handleLogout: handleLogout,
+      handleOnChange: handleOnChange,
+      handleAddCard: handleAddCard,
+      handleDownload: handleDownload,
+      handleEditCard: handleEditCard,
+      handleMoveCard: handleMoveCard,
+      handleRemoveCard: handleRemoveCard,
+      formatHelperText: formatHelperText,
+    },
+  };
 };

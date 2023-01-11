@@ -2,7 +2,6 @@ import React from "react";
 import * as Chakra from "@chakra-ui/react";
 import * as Icon from "react-icons/hi";
 import { CardContent } from "../../components/CardContent";
-import { ICardContent } from "../../entities/ICard";
 import { TemplateNewCarousel } from "../../components/TemplateNewCarousel";
 
 import jsPDF from "jspdf";
@@ -14,196 +13,205 @@ import { Header } from "../../components/Header";
 import { useSession } from "../../hooks/useSession";
 import { WithCopy } from "../../components/WithToast";
 import { IPageCarouselState } from "../../entities/IPageCarouselState";
+import { getFileName } from "../../utils/getFileName";
+import { usePageCarousel } from "./hook/usePageCarousel";
 
 export const PageCarousel = () => {
-  const { handleLogout, isLogged } = useSession();
+  // const { handleLogout, isLogged } = useSession();
 
-  const [state, setState] = React.useState<IPageCarouselState>({
-    isLoading: false,
-    authorName: "",
-    authorHandle: "",
-    authorAvatarURL: "",
-    subject: "",
-    bgImage: "",
-    fileName: "",
-    cards: [
-      {
-        content: "",
-        id: generateUUID(),
-        bgImage: "",
-        title: "",
-      },
-    ],
-  });
+  // const [state, setState] = React.useState<IPageCarouselState>({
+  //   isLoading: false,
+  //   authorName: "",
+  //   authorHandle: "",
+  //   authorAvatarURL: "",
+  //   subject: "",
+  //   bgImage: "",
+  //   fileName: "",
+  //   cards: [
+  //     {
+  //       content: "",
+  //       id: generateUUID(),
+  //       bgImage: "",
+  //       title: "",
+  //     },
+  //   ],
+  // });
 
-  const fileName = getFileName(state.fileName, state.authorName);
-  console.log(fileName);
+  // const fileName = getFileName(state.fileName, state.authorName);
 
-  const handleOnChange = (key: string, value: string) => {
-    setState((prev) => ({ ...prev, [key]: value }));
-  };
+  // const handleOnChange = (key: string, value: string) => {
+  //   setState((prev) => ({ ...prev, [key]: value }));
+  // };
 
-  const cardRefs = React.useRef<any[]>([]);
-  cardRefs.current = state.cards.map(
-    (_, i) => cardRefs.current[i] ?? React.createRef()
-  );
+  // const cardRefs = React.useRef<any[]>([]);
+  // cardRefs.current = state.cards.map(
+  //   (_, i) => cardRefs.current[i] ?? React.createRef()
+  // );
 
-  const handleDownload = async () => {
-    try {
-      setState((prev) => ({ ...prev, isLoading: true }));
-      const pdf = new jsPDF({
-        unit: "px",
-        compress: true,
-        format: [480, 600],
-      });
+  // const handleDownload = async () => {
+  //   try {
+  //     setState((prev) => ({ ...prev, isLoading: true }));
+  //     const pdf = new jsPDF({
+  //       unit: "px",
+  //       compress: true,
+  //       format: [480, 600],
+  //     });
 
-      const width = pdf.internal.pageSize.getWidth();
-      const height = pdf.internal.pageSize.getHeight();
+  //     const width = pdf.internal.pageSize.getWidth();
+  //     const height = pdf.internal.pageSize.getHeight();
 
-      let currentIndex = 0;
+  //     let currentIndex = 0;
 
-      for (let card of cardRefs.current) {
-        const canvas = await html2canvas(card.current, {
-          scale: 2,
-        });
+  //     for (let card of cardRefs.current) {
+  //       const canvas = await html2canvas(card.current, {
+  //         scale: 2,
+  //       });
 
-        const data = canvas.toDataURL("image/png");
+  //       const data = canvas.toDataURL("image/png");
 
-        pdf.addImage(data, "PNG", 0, 0, width, height);
+  //       pdf.addImage(data, "PNG", 0, 0, width, height);
 
-        currentIndex++;
-        if (currentIndex === cardRefs.current.length) break;
+  //       currentIndex++;
+  //       if (currentIndex === cardRefs.current.length) break;
 
-        pdf.addPage();
-      }
+  //       pdf.addPage();
+  //     }
 
-      pdf.save(`${fileName}.pdf`);
-    } catch (e) {
-      console.log(e);
-    } finally {
-      setState((prev) => ({ ...prev, isLoading: false }));
-    }
-  };
+  //     pdf.save(`${fileName}.pdf`);
+  //   } catch (e) {
+  //     console.log(e);
+  //   } finally {
+  //     setState((prev) => ({ ...prev, isLoading: false }));
+  //   }
+  // };
 
-  const handleAddCard = () => {
-    setState((prev) => ({
-      ...prev,
-      cards: [
-        ...prev.cards,
-        {
-          content: "",
-          title: "",
-          bgImage: "",
-          id: generateUUID(),
-        },
-      ],
-      content: "",
-      title: "",
-      bgImage: "",
-    }));
-  };
+  // const handleAddCard = () => {
+  //   setState((prev) => ({
+  //     ...prev,
+  //     cards: [
+  //       ...prev.cards,
+  //       {
+  //         content: "",
+  //         title: "",
+  //         bgImage: "",
+  //         id: generateUUID(),
+  //       },
+  //     ],
+  //     content: "",
+  //     title: "",
+  //     bgImage: "",
+  //   }));
+  // };
 
-  const handleRemoveCard = (cardId: string) => {
-    if (state.cards.length <= 1) return;
-    setState((prev) => ({
-      ...prev,
-      cards: prev.cards.filter((card) => card.id !== cardId),
-    }));
-  };
+  // const handleRemoveCard = (cardId: string) => {
+  //   if (state.cards.length <= 1) return;
+  //   setState((prev) => ({
+  //     ...prev,
+  //     cards: prev.cards.filter((card) => card.id !== cardId),
+  //   }));
+  // };
 
-  const handleEditCard = (cardId: string, key: string, value: string) => {
-    setState((prev) => ({
-      ...prev,
-      cards: prev.cards.map((card) => {
-        if (cardId === card.id) {
-          return {
-            ...card,
-            [key]: value,
-          };
-        }
-        return card;
-      }),
-    }));
-  };
+  // const handleEditCard = (cardId: string, key: string, value: string) => {
+  //   setState((prev) => ({
+  //     ...prev,
+  //     cards: prev.cards.map((card) => {
+  //       if (cardId === card.id) {
+  //         return {
+  //           ...card,
+  //           [key]: value,
+  //         };
+  //       }
+  //       return card;
+  //     }),
+  //   }));
+  // };
 
-  const handleMoveCard = (
-    currentIndex: number,
-    prevOrNext: "previous" | "next"
-  ) => {
-    const previousItemIndex = currentIndex - 1;
-    const nextItemIndex = currentIndex + 1;
+  // const handleMoveCard = (
+  //   currentIndex: number,
+  //   prevOrNext: "previous" | "next"
+  // ) => {
+  //   const previousItemIndex = currentIndex - 1;
+  //   const nextItemIndex = currentIndex + 1;
 
-    const updatedArr =
-      prevOrNext === "previous"
-        ? state.cards.map((card, index) => {
-            if (previousItemIndex < 0) return card;
-            if (previousItemIndex === index) {
-              return state.cards[currentIndex];
-            }
-            if (currentIndex === index) {
-              return state.cards[previousItemIndex];
-            }
-            return card;
-          })
-        : state.cards.map((card, index) => {
-            if (nextItemIndex === state.cards.length) return card;
-            if (currentIndex === index) {
-              return state.cards[nextItemIndex];
-            }
-            if (nextItemIndex === index) {
-              return state.cards[currentIndex];
-            }
-            return card;
-          });
+  //   const updatedArr =
+  //     prevOrNext === "previous"
+  //       ? state.cards.map((card, index) => {
+  //           if (previousItemIndex < 0) return card;
+  //           if (previousItemIndex === index) {
+  //             return state.cards[currentIndex];
+  //           }
+  //           if (currentIndex === index) {
+  //             return state.cards[previousItemIndex];
+  //           }
+  //           return card;
+  //         })
+  //       : state.cards.map((card, index) => {
+  //           if (nextItemIndex === state.cards.length) return card;
+  //           if (currentIndex === index) {
+  //             return state.cards[nextItemIndex];
+  //           }
+  //           if (nextItemIndex === index) {
+  //             return state.cards[currentIndex];
+  //           }
+  //           return card;
+  //         });
 
-    setState((prev) => ({ ...prev, cards: updatedArr }));
-  };
+  //   setState((prev) => ({ ...prev, cards: updatedArr }));
+  // };
 
-  const lastItemOnCardArray = state.cards[state.cards.length - 1];
-  const isHandlAddCardEnabled =
-    !!lastItemOnCardArray.content && !!lastItemOnCardArray.title;
-  const isDownloadEnabled =
-    !!lastItemOnCardArray.content && !!lastItemOnCardArray.title;
-  const isRemoveCardDisabled = state.cards.length <= 1;
+  // const lastItemOnCardArray = state.cards[state.cards.length - 1];
+  // const isHandlAddCardEnabled =
+  //   !!lastItemOnCardArray.content && !!lastItemOnCardArray.title;
+  // const isDownloadEnabled =
+  //   !!lastItemOnCardArray.content && !!lastItemOnCardArray.title;
+  // const isRemoveCardDisabled = state.cards.length <= 1;
 
-  const calculateWords = (string: string): number => {
-    return string.length || 0;
-  };
-  const formatHelperText = (stateAtt: string, maxValue: number): string =>
-    `${String(calculateWords(stateAtt))}/${maxValue}`;
+  // const calculateWords = (string: string): number => {
+  //   return string.length || 0;
+  // };
+  // const formatHelperText = (stateAtt: string, maxValue: number): string =>
+  //   `${String(calculateWords(stateAtt))}/${maxValue}`;
 
-  const authorNameHelperText = formatHelperText(state.authorName, 30);
-  const authorHandleHelperText = formatHelperText(state.authorHandle, 30);
-  const subjectHelperText = formatHelperText(state.subject, 30);
+  // const authorNameHelperText = formatHelperText(state.authorName, 30);
+  // const authorHandleHelperText = formatHelperText(state.authorHandle, 30);
+  // const subjectHelperText = formatHelperText(state.subject, 30);
 
-  const authorNameFocusBorderColor =
-    state.authorName.length > 30 ? "red.800" : "teal.500";
+  // const authorNameFocusBorderColor =
+  //   state.authorName.length > 30 ? "red.800" : "teal.500";
+
+  const { state, methods } = usePageCarousel();
 
   return (
     <TemplateNewCarousel
-      header={<Header onLogout={handleLogout} isLogged={isLogged} />}
+      header={
+        <Header onLogout={methods.handleLogout} isLogged={state.isLogged} />
+      }
       leftSection={
         <Chakra.Grid w="full" gap="4" p="4">
           <Chakra.Grid w="full" justifyItems="flex-start" gap="4">
             <Chakra.Text fontSize="xs" fontWeight="bold">
               1. Author
             </Chakra.Text>
-            <WithCopy value={state.authorName}>
+            <WithCopy value={state.state.authorName}>
               <Input
                 label="Author Name"
-                value={state.authorName}
-                onChange={(e) => handleOnChange("authorName", e.target.value)}
-                helperText={authorNameHelperText}
-                focusBorderColor={authorNameFocusBorderColor}
+                value={state.state.authorName}
+                onChange={(e) =>
+                  methods.handleOnChange("authorName", e.target.value)
+                }
+                helperText={state.authorNameHelperText}
+                focusBorderColor={state.authorNameFocusBorderColor}
               />
             </WithCopy>
 
-            <WithCopy value={state.authorHandle}>
+            <WithCopy value={state.state.authorHandle}>
               <Input
                 label="Author Handle"
-                value={state.authorHandle}
-                onChange={(e) => handleOnChange("authorHandle", e.target.value)}
-                helperText={authorHandleHelperText}
+                value={state.state.authorHandle}
+                onChange={(e) =>
+                  methods.handleOnChange("authorHandle", e.target.value)
+                }
+                helperText={state.authorHandleHelperText}
               />
             </WithCopy>
           </Chakra.Grid>
@@ -212,12 +220,14 @@ export const PageCarousel = () => {
             <Chakra.Text fontSize="xs" fontWeight="bold">
               2. Subject
             </Chakra.Text>
-            <WithCopy value={state.subject}>
+            <WithCopy value={state.state.subject}>
               <Input
                 label="Subject"
-                value={state.subject}
-                onChange={(e) => handleOnChange("subject", e.target.value)}
-                helperText={subjectHelperText}
+                value={state.state.subject}
+                onChange={(e) =>
+                  methods.handleOnChange("subject", e.target.value)
+                }
+                helperText={state.subjectHelperText}
               />
             </WithCopy>
           </Chakra.Grid>
@@ -228,7 +238,7 @@ export const PageCarousel = () => {
             </Chakra.Text>
 
             <Chakra.Grid w="full" gap="8">
-              {state.cards.map((card, index, array) => (
+              {state.state.cards.map((card, index, array) => (
                 <Chakra.HStack
                   key={index}
                   w="full"
@@ -241,7 +251,7 @@ export const PageCarousel = () => {
                   <Chakra.VStack w="full" spacing="8" py="8" pl="8">
                     <Chakra.HStack w="full" justify="space-between">
                       <Chakra.Text color="gray.300" fontSize="xs">
-                        Card {index + 1}/{state.cards.length}
+                        Card {index + 1}/{state.state.cards.length}
                       </Chakra.Text>
                       <Chakra.IconButton
                         aria-label="Remove"
@@ -250,8 +260,8 @@ export const PageCarousel = () => {
                         color="gray.100"
                         size="xs"
                         borderRadius="0"
-                        isDisabled={isRemoveCardDisabled}
-                        onClick={() => handleRemoveCard(card.id)}
+                        isDisabled={state.isRemoveCardDisabled}
+                        onClick={() => methods.handleRemoveCard(card.id)}
                       />
                     </Chakra.HStack>
 
@@ -260,9 +270,13 @@ export const PageCarousel = () => {
                         label="Title"
                         value={card.title}
                         onChange={(e) =>
-                          handleEditCard(card.id, "title", e.target.value)
+                          methods.handleEditCard(
+                            card.id,
+                            "title",
+                            e.target.value
+                          )
                         }
-                        helperText={formatHelperText(card.title!, 30)}
+                        helperText={methods.formatHelperText(card.title!, 30)}
                         _focus={{ bg: "gray.900" }}
                         _hover={{ bg: "gray.900" }}
                         bg="gray.900"
@@ -274,9 +288,16 @@ export const PageCarousel = () => {
                         label="Content"
                         value={card.content}
                         onChange={(e) =>
-                          handleEditCard(card.id, "content", e.target.value)
+                          methods.handleEditCard(
+                            card.id,
+                            "content",
+                            e.target.value
+                          )
                         }
-                        helperText={formatHelperText(card.content!, 200)}
+                        helperText={methods.formatHelperText(
+                          card.content!,
+                          200
+                        )}
                         _focus={{ bg: "gray.900" }}
                         _hover={{ bg: "gray.900" }}
                         bg="gray.900"
@@ -291,7 +312,7 @@ export const PageCarousel = () => {
                       borderRadius="0"
                       variant="ghost"
                       icon={<Icon.HiOutlineChevronUp />}
-                      onClick={() => handleMoveCard(index, "previous")}
+                      onClick={() => methods.handleMoveCard(index, "previous")}
                       isDisabled={index === 0 ? true : false}
                     />
 
@@ -302,7 +323,7 @@ export const PageCarousel = () => {
                       borderRadius="0"
                       variant="ghost"
                       icon={<Icon.HiOutlineChevronDown />}
-                      onClick={() => handleMoveCard(index, "next")}
+                      onClick={() => methods.handleMoveCard(index, "next")}
                       isDisabled={index === array.length - 1 ? true : false}
                     />
                   </Chakra.VStack>
@@ -314,8 +335,8 @@ export const PageCarousel = () => {
               <Chakra.Button
                 colorScheme="teal"
                 borderRadius="0"
-                isDisabled={!isHandlAddCardEnabled}
-                onClick={handleAddCard}
+                isDisabled={!state.isHandlAddCardEnabled}
+                onClick={methods.handleAddCard}
               >
                 Add Card
               </Chakra.Button>
@@ -328,9 +349,11 @@ export const PageCarousel = () => {
 
               <Input
                 label="File Name"
-                value={state.fileName}
-                onChange={(e) => handleOnChange("fileName", e.target.value)}
-                helperText={fileName}
+                value={state.state.fileName}
+                onChange={(e) =>
+                  methods.handleOnChange("fileName", e.target.value)
+                }
+                helperText={state.fileName}
               />
             </Chakra.Grid>
           </Chakra.Grid>
@@ -338,8 +361,8 @@ export const PageCarousel = () => {
       }
       rightSection={
         <Chakra.Grid w="full" gap="8" p="8" justifyItems="center">
-          {state.cards.length !== 0 &&
-            state.cards.map((card, cardIndex) => {
+          {state.state.cards.length !== 0 &&
+            state.state.cards.map((card, cardIndex) => {
               return (
                 <CardContent
                   id={card.id}
@@ -347,11 +370,11 @@ export const PageCarousel = () => {
                   title={card.title}
                   content={card.content}
                   bgImage={card.bgImage}
-                  subject={state.subject}
-                  authorName={state.authorName}
-                  authorHandle={state.authorHandle}
-                  authorAvatar={state.authorAvatarURL}
-                  ref={cardRefs.current[cardIndex]}
+                  subject={state.state.subject}
+                  authorName={state.state.authorName}
+                  authorHandle={state.state.authorHandle}
+                  authorAvatar={state.state.authorAvatarURL}
+                  ref={state.cardRefs.current[cardIndex]}
                 />
               );
             })}
@@ -360,9 +383,9 @@ export const PageCarousel = () => {
             <Chakra.Button
               colorScheme="teal"
               borderRadius="0"
-              onClick={handleDownload}
-              isDisabled={!isDownloadEnabled}
-              isLoading={state.isLoading}
+              onClick={methods.handleDownload}
+              isDisabled={!state.isDownloadEnabled}
+              isLoading={state.state.isLoading}
             >
               Download
             </Chakra.Button>
@@ -371,12 +394,4 @@ export const PageCarousel = () => {
       }
     />
   );
-};
-
-const getFileName = (fileName?: string, author?: string): string => {
-  if (!fileName)
-    return `${"Carousel"} - ${"Powered by CarouselBuilder by @fischearafael"} - ${new Date().toISOString()}`;
-  if (!author)
-    return `${fileName} - ${"Powered by CarouselBuilder by @fischearafael"} - ${new Date().toISOString()}`;
-  return `${fileName} - ${author} - ${new Date().toISOString()}`;
 };
