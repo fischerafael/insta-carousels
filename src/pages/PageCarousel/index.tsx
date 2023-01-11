@@ -22,6 +22,7 @@ interface IState {
   authorAvatarURL: string;
   subject: string;
   bgImage: string;
+  fileName: string;
   cards: ICardContent[];
 }
 
@@ -35,6 +36,7 @@ export const PageCarousel = () => {
     authorAvatarURL: "",
     subject: "",
     bgImage: "",
+    fileName: "",
     cards: [
       {
         content: "",
@@ -44,6 +46,8 @@ export const PageCarousel = () => {
       },
     ],
   });
+
+  const fileName = getFileName(state.fileName, state.authorName);
 
   const handleOnChange = (key: string, value: string) => {
     setState((prev) => ({ ...prev, [key]: value }));
@@ -83,9 +87,7 @@ export const PageCarousel = () => {
         pdf.addPage();
       }
 
-      console.log("outside loop");
-
-      pdf.save(`instant-carousel-${state.authorName}.pdf`);
+      pdf.save(`${fileName}.pdf`);
     } catch (e) {
       console.log(e);
     } finally {
@@ -328,6 +330,19 @@ export const PageCarousel = () => {
                 Add Card
               </Chakra.Button>
             </Chakra.HStack>
+
+            <Chakra.Grid w="full" justifyItems="flex-start" gap="4">
+              <Chakra.Text fontSize="xs" fontWeight="bold">
+                4. File
+              </Chakra.Text>
+
+              <Input
+                label="File Name"
+                value={state.fileName}
+                onChange={(e) => handleOnChange("fileName", e.target.value)}
+                helperText={fileName}
+              />
+            </Chakra.Grid>
           </Chakra.Grid>
         </Chakra.Grid>
       }
@@ -366,4 +381,10 @@ export const PageCarousel = () => {
       }
     />
   );
+};
+
+const getFileName = (fileName?: string, author?: string): string => {
+  if (!fileName || !author)
+    return `${"Carousel"} - ${"Powered by CarouselBuilder by @fischearafael"} - ${new Date().toISOString()}`;
+  return `${fileName} - ${author} - ${new Date().toISOString()}`;
 };
