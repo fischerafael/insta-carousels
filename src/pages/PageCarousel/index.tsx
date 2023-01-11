@@ -48,6 +48,7 @@ export const PageCarousel = () => {
   });
 
   const fileName = getFileName(state.fileName, state.authorName);
+  console.log(fileName);
 
   const handleOnChange = (key: string, value: string) => {
     setState((prev) => ({ ...prev, [key]: value }));
@@ -384,7 +385,9 @@ export const PageCarousel = () => {
 };
 
 const getFileName = (fileName?: string, author?: string): string => {
-  if (!fileName || !author)
+  if (!fileName)
     return `${"Carousel"} - ${"Powered by CarouselBuilder by @fischearafael"} - ${new Date().toISOString()}`;
+  if (!author)
+    return `${fileName} - ${"Powered by CarouselBuilder by @fischearafael"} - ${new Date().toISOString()}`;
   return `${fileName} - ${author} - ${new Date().toISOString()}`;
 };
