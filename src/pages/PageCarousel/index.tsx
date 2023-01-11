@@ -15,7 +15,7 @@ import { useSession } from "../../hooks/useSession";
 import { useToasts } from "../../hooks/useToasts";
 import { WithCopy } from "../../components/WithToast";
 
-interface IState {
+export interface IPageCarouselState {
   isLoading: boolean;
   authorName: string;
   authorHandle: string;
@@ -29,7 +29,7 @@ interface IState {
 export const PageCarousel = () => {
   const { handleLogout, isLogged } = useSession();
 
-  const [state, setState] = React.useState<IState>({
+  const [state, setState] = React.useState<IPageCarouselState>({
     isLoading: false,
     authorName: "",
     authorHandle: "",
