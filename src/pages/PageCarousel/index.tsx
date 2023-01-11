@@ -12,19 +12,8 @@ import { Input, TextArea } from "../../components/Input";
 import { IconButton } from "@chakra-ui/react";
 import { Header } from "../../components/Header";
 import { useSession } from "../../hooks/useSession";
-import { useToasts } from "../../hooks/useToasts";
 import { WithCopy } from "../../components/WithToast";
-
-export interface IPageCarouselState {
-  isLoading: boolean;
-  authorName: string;
-  authorHandle: string;
-  authorAvatarURL: string;
-  subject: string;
-  bgImage: string;
-  fileName: string;
-  cards: ICardContent[];
-}
+import { IPageCarouselState } from "../../entities/IPageCarouselState";
 
 export const PageCarousel = () => {
   const { handleLogout, isLogged } = useSession();
