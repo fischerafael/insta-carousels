@@ -8,6 +8,7 @@ import { IconButton } from "@chakra-ui/react";
 import { Header } from "../../components/Header";
 import { WithCopy } from "../../components/WithToast";
 import { usePageCarousel } from "./hook/usePageCarousel";
+import { WithAccordion } from "../../components/WithAccordion";
 
 export const PageCarousel = () => {
   const { state, methods } = usePageCarousel();
@@ -20,31 +21,37 @@ export const PageCarousel = () => {
       leftSection={
         <Chakra.Grid w="full" gap="4" p="4">
           <Chakra.Grid w="full" justifyItems="flex-start" gap="4">
-            <Chakra.Text fontSize="xs" fontWeight="bold">
-              1. Author
-            </Chakra.Text>
-            <WithCopy value={state.state.authorName}>
-              <Input
-                label="Author Name"
-                value={state.state.authorName}
-                onChange={(e) =>
-                  methods.handleOnChange("authorName", e.target.value)
-                }
-                helperText={state.authorNameHelperText}
-                focusBorderColor={state.authorNameFocusBorderColor}
-              />
-            </WithCopy>
-
-            <WithCopy value={state.state.authorHandle}>
-              <Input
-                label="Author Handle"
-                value={state.state.authorHandle}
-                onChange={(e) =>
-                  methods.handleOnChange("authorHandle", e.target.value)
-                }
-                helperText={state.authorHandleHelperText}
-              />
-            </WithCopy>
+            <WithAccordion
+              header={
+                <Chakra.Text fontSize="xs" fontWeight="bold">
+                  1. Author
+                </Chakra.Text>
+              }
+            >
+              <>
+                <WithCopy value={state.state.authorName}>
+                  <Input
+                    label="Author Name"
+                    value={state.state.authorName}
+                    onChange={(e) =>
+                      methods.handleOnChange("authorName", e.target.value)
+                    }
+                    helperText={state.authorNameHelperText}
+                    focusBorderColor={state.authorNameFocusBorderColor}
+                  />
+                </WithCopy>
+                <WithCopy value={state.state.authorHandle}>
+                  <Input
+                    label="Author Handle"
+                    value={state.state.authorHandle}
+                    onChange={(e) =>
+                      methods.handleOnChange("authorHandle", e.target.value)
+                    }
+                    helperText={state.authorHandleHelperText}
+                  />
+                </WithCopy>
+              </>
+            </WithAccordion>
           </Chakra.Grid>
 
           <Chakra.Grid w="full" justifyItems="flex-start" gap="4">
