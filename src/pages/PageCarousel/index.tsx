@@ -205,7 +205,7 @@ export const PageCarousel = () => {
               onChange={(e) =>
                 methods.handleOnChange("fileName", e.target.value)
               }
-              helperText={state.fileName}
+              // helperText={state.fileName}
             />
           </WithAccordion>
         </Chakra.Grid>

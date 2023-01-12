@@ -32,18 +32,20 @@ export const useSession = () => {
   };
 
   React.useEffect(() => {
-    const userData: any = cookie.get();
-    if (!userData) {
-      handleLogout();
-      return;
-    }
-    cookie.set(undefined, userData);
-    userStore.methods.setUser(
-      userData.email,
-      userData.id,
-      userData.displayName,
-      userData.photoURL
-    );
+    try {
+      const userData: any = cookie.get();
+      if (!userData) {
+        handleLogout();
+        return;
+      }
+      cookie.set(undefined, userData);
+      userStore.methods.setUser(
+        userData.email,
+        userData.id,
+        userData.displayName,
+        userData.photoURL
+      );
+    } catch (e) {}
   }, []);
 
   const isLogged = !!userStore.state.email;
