@@ -103,9 +103,6 @@ export const Select = ({
           </Chakra.Text>
         ))}
       </Chakra.Select>
-      <Chakra.FormHelperText fontSize="xs" color="gray.300">
-        {helperText}
-      </Chakra.FormHelperText>
     </Chakra.FormControl>
   );
 };

@@ -4,6 +4,11 @@ import { ICard } from "../../entities/ICard";
 
 // eslint-disable-next-line react/display-name
 export const CardContent = forwardRef((props: ICard, ref) => {
+  const style = {
+    color: `${props.accentColor}.500`,
+    colorScheme: props.accentColor,
+  };
+
   return (
     <Chakra.VStack
       w="480px"
@@ -29,7 +34,7 @@ export const CardContent = forwardRef((props: ICard, ref) => {
             {props.subject || "Subject"}
           </Chakra.Text>
           <Chakra.Text
-            color="blue.300"
+            color={style.color}
             fontSize="5xl"
             fontWeight="bold"
             lineHeight="1"

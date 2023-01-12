@@ -65,7 +65,7 @@ export const PageCarousel = () => {
               </Chakra.Text>
             }
           >
-            <WithCopy value={state.state.authorName}>
+            <WithCopy value={state.state.accentColor}>
               <Select
                 options={state.colorOption}
                 label="Accent Color"
@@ -225,7 +225,6 @@ export const PageCarousel = () => {
               onChange={(e) =>
                 methods.handleOnChange("fileName", e.target.value)
               }
-              // helperText={state.fileName}
             />
           </WithAccordion>
         </Chakra.Grid>
@@ -246,6 +245,7 @@ export const PageCarousel = () => {
                   authorHandle={state.state.authorHandle}
                   authorAvatar={state.state.authorAvatarURL}
                   ref={state.cardRefs.current[cardIndex]}
+                  accentColor={state.state.accentColor}
                 />
               );
             })}
