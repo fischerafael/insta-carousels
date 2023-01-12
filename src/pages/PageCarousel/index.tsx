@@ -58,7 +58,7 @@ export const PageCarousel = () => {
             </>
           </WithAccordion>
 
-          {/* <WithAccordion
+          <WithAccordion
             header={
               <Chakra.Text fontSize="sm" fontWeight="bold" color="teal.500">
                 2. Style
@@ -73,11 +73,10 @@ export const PageCarousel = () => {
                 onChange={(e) =>
                   methods.handleOnChange("color", e.target.value)
                 }
-                helperText={state.authorNameHelperText}
                 focusBorderColor={state.authorNameFocusBorderColor}
               />
             </WithCopy>
-          </WithAccordion> */}
+          </WithAccordion>
 
           <WithAccordion
             header={

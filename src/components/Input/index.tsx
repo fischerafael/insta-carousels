@@ -89,15 +89,18 @@ export const Select = ({
         variant="filled"
         border="1px"
         borderColor="gray.700"
-        p="6"
-        minH="180px"
-        w="full"
+        h="12"
         {...props}
       >
         {options?.map((opt) => (
-          <option key={opt.value} value={opt.value}>
+          <Chakra.Text
+            as="option"
+            color="gray.900"
+            key={opt.value}
+            value={opt.value}
+          >
             {opt.name}
-          </option>
+          </Chakra.Text>
         ))}
       </Chakra.Select>
       <Chakra.FormHelperText fontSize="xs" color="gray.300">
