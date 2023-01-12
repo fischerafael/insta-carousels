@@ -3,7 +3,7 @@ import * as Chakra from "@chakra-ui/react";
 import * as Icon from "react-icons/hi";
 import { CardContent } from "../../components/CardContent";
 import { TemplateNewCarousel } from "../../components/TemplateNewCarousel";
-import { Input, TextArea } from "../../components/Input";
+import { Input, Select, TextArea } from "../../components/Input";
 import { IconButton } from "@chakra-ui/react";
 import { Header } from "../../components/Header";
 import { WithCopy } from "../../components/WithToast";
@@ -58,27 +58,26 @@ export const PageCarousel = () => {
             </>
           </WithAccordion>
 
-          <WithAccordion
+          {/* <WithAccordion
             header={
               <Chakra.Text fontSize="sm" fontWeight="bold" color="teal.500">
                 2. Style
               </Chakra.Text>
             }
           >
-            <>
-              <WithCopy value={state.state.authorName}>
-                <Input
-                  label="Accent Color"
-                  value={state.state.authorName}
-                  onChange={(e) =>
-                    methods.handleOnChange("authorName", e.target.value)
-                  }
-                  helperText={state.authorNameHelperText}
-                  focusBorderColor={state.authorNameFocusBorderColor}
-                />
-              </WithCopy>
-            </>
-          </WithAccordion>
+            <WithCopy value={state.state.authorName}>
+              <Select
+                options={state.colorOption}
+                label="Accent Color"
+                value={state.state.authorName}
+                onChange={(e) =>
+                  methods.handleOnChange("color", e.target.value)
+                }
+                helperText={state.authorNameHelperText}
+                focusBorderColor={state.authorNameFocusBorderColor}
+              />
+            </WithCopy>
+          </WithAccordion> */}
 
           <WithAccordion
             header={

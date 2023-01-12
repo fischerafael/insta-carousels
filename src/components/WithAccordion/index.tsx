@@ -27,10 +27,13 @@ export const WithAccordion = ({
       borderColor="gray.700"
       py="8"
       h="fit-content"
-      cursor="pointer"
-      onClick={handleToggle}
     >
-      <Chakra.HStack w="full" justify="space-between">
+      <Chakra.HStack
+        w="full"
+        justify="space-between"
+        cursor="pointer"
+        onClick={handleToggle}
+      >
         {header}
         <Chakra.IconButton
           aria-label="close-open"

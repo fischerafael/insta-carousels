@@ -1,4 +1,5 @@
 import { IColors } from "../../entities/IColors";
+import { IOption } from "../../entities/IOption";
 
 export const useColorOptions = () => {
   const colorOptions: IColors[] = [
@@ -15,5 +16,5 @@ export const useColorOptions = () => {
     "white",
     "yellow",
   ];
-  return colorOptions;
+  return colorOptions.map((opt) => ({ name: opt, value: opt } as IOption));
 };

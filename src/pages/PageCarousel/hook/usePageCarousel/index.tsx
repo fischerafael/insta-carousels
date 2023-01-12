@@ -10,7 +10,7 @@ import { useColorOptions } from "../../../../hooks/useColorOptions";
 
 export const usePageCarousel = () => {
   const { handleLogout, isLogged } = useSession();
-  const colors = useColorOptions();
+  const colorOptions = useColorOptions();
 
   const [state, setState] = React.useState<IPageCarouselState>({
     isLoading: false,
@@ -175,6 +175,7 @@ export const usePageCarousel = () => {
 
   return {
     state: {
+      colorOption: colorOptions,
       isLogged: isLogged,
       state: state,
       authorNameHelperText: authorNameHelperText,
