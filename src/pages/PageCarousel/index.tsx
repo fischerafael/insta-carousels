@@ -69,11 +69,10 @@ export const PageCarousel = () => {
               <Select
                 options={state.colorOption}
                 label="Accent Color"
-                value={state.state.authorName}
+                value={state.state.accentColor}
                 onChange={(e) =>
-                  methods.handleOnChange("color", e.target.value)
+                  methods.handleOnChange("accentColor", e.target.value)
                 }
-                focusBorderColor={state.authorNameFocusBorderColor}
               />
             </WithCopy>
           </WithAccordion>

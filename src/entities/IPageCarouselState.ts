@@ -1,4 +1,5 @@
 import { ICardContent } from "./ICard";
+import { IColors } from "./IColors";
 
 export interface IPageCarouselState {
   isLoading: boolean;
@@ -9,4 +10,5 @@ export interface IPageCarouselState {
   bgImage: string;
   fileName: string;
   cards: ICardContent[];
+  accentColor: IColors;
 }

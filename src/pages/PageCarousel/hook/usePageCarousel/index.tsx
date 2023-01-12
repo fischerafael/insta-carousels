@@ -20,6 +20,7 @@ export const usePageCarousel = () => {
     subject: "",
     bgImage: "",
     fileName: "",
+    accentColor: "teal",
     cards: [
       {
         content: "",
@@ -31,7 +32,6 @@ export const usePageCarousel = () => {
   });
 
   const fileName = getFileName(state.fileName, state.authorName);
-  console.log(fileName);
 
   const handleOnChange = (key: string, value: string) => {
     setState((prev) => ({ ...prev, [key]: value }));
