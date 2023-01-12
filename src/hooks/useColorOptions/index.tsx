@@ -1,4 +1,3 @@
-import React from "react";
 import { IColors } from "../../entities/IColors";
 
 export const useColorOptions = () => {
