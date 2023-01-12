@@ -20,11 +20,13 @@ export const WithAccordion = ({
   return (
     <Chakra.VStack
       w="full"
+      gap="8"
+      justifyItems="flex-start"
       borderBottom="1px"
       borderTop="1px"
       borderColor="gray.700"
       py="8"
-      gap="6"
+      h="fit-content"
     >
       <Chakra.HStack w="full" justify="space-between">
         {header}
