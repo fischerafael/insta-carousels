@@ -6,9 +6,11 @@ import { IPageCarouselState } from "../../../../entities/IPageCarouselState";
 import { useSession } from "../../../../hooks/useSession";
 import { generateUUID } from "../../../../utils/generate-uuid";
 import { getFileName } from "../../../../utils/getFileName";
+import { useColorOptions } from "../../../../hooks/useColorOptions";
 
 export const usePageCarousel = () => {
   const { handleLogout, isLogged } = useSession();
+  const colors = useColorOptions();
 
   const [state, setState] = React.useState<IPageCarouselState>({
     isLoading: false,

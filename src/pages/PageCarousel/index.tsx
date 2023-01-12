@@ -28,7 +28,7 @@ export const PageCarousel = () => {
         >
           <WithAccordion
             header={
-              <Chakra.Text fontSize="xs" fontWeight="bold">
+              <Chakra.Text fontSize="sm" fontWeight="bold" color="teal.500">
                 1. Author
               </Chakra.Text>
             }
@@ -57,10 +57,33 @@ export const PageCarousel = () => {
               </WithCopy>
             </>
           </WithAccordion>
+
           <WithAccordion
             header={
-              <Chakra.Text fontSize="xs" fontWeight="bold">
-                2. Subject
+              <Chakra.Text fontSize="sm" fontWeight="bold" color="teal.500">
+                2. Style
+              </Chakra.Text>
+            }
+          >
+            <>
+              <WithCopy value={state.state.authorName}>
+                <Input
+                  label="Accent Color"
+                  value={state.state.authorName}
+                  onChange={(e) =>
+                    methods.handleOnChange("authorName", e.target.value)
+                  }
+                  helperText={state.authorNameHelperText}
+                  focusBorderColor={state.authorNameFocusBorderColor}
+                />
+              </WithCopy>
+            </>
+          </WithAccordion>
+
+          <WithAccordion
+            header={
+              <Chakra.Text fontSize="sm" fontWeight="bold" color="teal.500">
+                3. Subject
               </Chakra.Text>
             }
           >
@@ -78,8 +101,8 @@ export const PageCarousel = () => {
 
           <WithAccordion
             header={
-              <Chakra.Text fontSize="xs" fontWeight="bold">
-                3. Content
+              <Chakra.Text fontSize="sm" fontWeight="bold" color="teal.500">
+                4. Content
               </Chakra.Text>
             }
           >
@@ -194,8 +217,8 @@ export const PageCarousel = () => {
 
           <WithAccordion
             header={
-              <Chakra.Text fontSize="xs" fontWeight="bold">
-                4. File
+              <Chakra.Text fontSize="sm" fontWeight="bold" color="teal.500">
+                5. File
               </Chakra.Text>
             }
           >

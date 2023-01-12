@@ -55,7 +55,7 @@ export const TemplateNewCarousel = ({
           )}
           <Chakra.Grid
             h="full"
-            maxW="container.lg"
+            maxW="container.md"
             w="full"
             gridTemplateColumns="1fr"
             justifyItems="center"

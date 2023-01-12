@@ -27,6 +27,8 @@ export const WithAccordion = ({
       borderColor="gray.700"
       py="8"
       h="fit-content"
+      cursor="pointer"
+      onClick={handleToggle}
     >
       <Chakra.HStack w="full" justify="space-between">
         {header}
@@ -37,8 +39,6 @@ export const WithAccordion = ({
           size="xs"
           colorScheme="teal"
           _hover={{ bg: "transparent", color: "teal.300" }}
-          cursor="pointer"
-          onClick={handleToggle}
         />
       </Chakra.HStack>
       {isOpen ? <>{children}</> : null}
