@@ -7,7 +7,7 @@ export const CardContent = forwardRef((props: ICard, ref) => {
   return (
     <Chakra.VStack
       w="480px"
-      bgGradient="linear(to-l, gray.800, gray.900)"
+      bg="gray.800"
       h="600px"
       align="flex-start"
       position="relative"
@@ -29,7 +29,7 @@ export const CardContent = forwardRef((props: ICard, ref) => {
             {props.subject || "Subject"}
           </Chakra.Text>
           <Chakra.Text
-            color="teal.300"
+            color="blue.300"
             fontSize="5xl"
             fontWeight="bold"
             lineHeight="1"
