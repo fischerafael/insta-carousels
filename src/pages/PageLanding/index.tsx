@@ -25,7 +25,7 @@ export const PageLanding = () => {
 
   return (
     <TemplateHeaderMain
-      header={<Header />}
+      header={<Header onLogin={handleLoginWithGoogle} />}
       main={
         <Chakra.Grid maxW="container.lg" padding="8" w="full" gap="16">
           <Chakra.Text

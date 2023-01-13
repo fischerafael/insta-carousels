@@ -4,8 +4,10 @@ import * as Chakra from "@chakra-ui/react";
 export const Header = ({
   onLogout,
   isLogged,
+  onLogin,
 }: {
   onLogout?: () => void;
+  onLogin?: () => void;
   isLogged?: boolean;
 }) => {
   return (
