@@ -27,28 +27,38 @@ export const PageLanding = () => {
     <TemplateHeaderMain
       header={<Header />}
       main={
-        <Chakra.Grid maxW="container.lg" padding="8">
-          <Chakra.VStack w="full" h="70vh" justify="center">
-            <Chakra.Text fontSize="6xl" fontWeight="bold" textAlign="center">
-              The easiest way to create <br />
-              <Chakra.Text
-                as="span"
-                bgGradient="linear(to-l, teal.200, teal.600)"
-                bgClip="text"
-              >
-                Linkedin Carousels
-              </Chakra.Text>
+        <Chakra.Grid maxW="container.lg" padding="8" w="full" gap="16">
+          <Chakra.Text
+            fontSize="6xl"
+            fontWeight="bold"
+            textAlign="center"
+            pt="16"
+            lineHeight="1"
+          >
+            The easiest way to create <br />
+            <Chakra.Text
+              as="span"
+              bgGradient="linear(to-l, teal.200, teal.600)"
+              bgClip="text"
+            >
+              Linkedin Carousels
             </Chakra.Text>
+          </Chakra.Text>
+          <Chakra.HStack justify="center">
             <Chakra.Button
               colorScheme="teal"
               borderRadius="0"
               size="lg"
+              p="8"
               onClick={handleLoginWithGoogle}
               isLoading={state.isLoading}
             >
               Start Creating
             </Chakra.Button>
-          </Chakra.VStack>
+          </Chakra.HStack>
+
+          <Chakra.Image alt="hero" src="/bg-hero.svg" w="full" />
+
           <Chakra.Grid
             w="full"
             maxW="container.lg"

@@ -12,8 +12,6 @@ export const CardContent = forwardRef((props: ICard, ref) => {
     textFaded: `${props.textColor}.100`,
   };
 
-  console.log(style);
-
   return (
     <Chakra.VStack
       w="480px"
