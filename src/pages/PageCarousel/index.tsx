@@ -59,6 +59,7 @@ export const PageCarousel = () => {
           </WithAccordion>
 
           <WithAccordion
+            defaultValue={false}
             header={
               <Chakra.Text fontSize="sm" fontWeight="bold" color="teal.500">
                 2. Style
@@ -78,6 +79,7 @@ export const PageCarousel = () => {
           </WithAccordion>
 
           <WithAccordion
+            defaultValue={false}
             header={
               <Chakra.Text fontSize="sm" fontWeight="bold" color="teal.500">
                 3. Subject
@@ -213,6 +215,7 @@ export const PageCarousel = () => {
           </WithAccordion>
 
           <WithAccordion
+            defaultValue={false}
             header={
               <Chakra.Text fontSize="sm" fontWeight="bold" color="teal.500">
                 5. File

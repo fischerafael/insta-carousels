@@ -7,6 +7,7 @@ export const CardContent = forwardRef((props: ICard, ref) => {
   const style = {
     color: `${props.accentColor}.500`,
     colorScheme: props.accentColor,
+    bg: `${props.accentColor}.900`,
   };
 
   return (
