@@ -76,6 +76,26 @@ export const PageCarousel = () => {
                 }
               />
             </WithCopy>
+            <WithCopy value={state.state.accentColor}>
+              <Select
+                options={state.colorOption}
+                label="Background Color"
+                value={state.state.bgColor}
+                onChange={(e) =>
+                  methods.handleOnChange("bgColor", e.target.value)
+                }
+              />
+            </WithCopy>
+            <WithCopy value={state.state.accentColor}>
+              <Select
+                options={state.colorOption}
+                label="Text Color"
+                value={state.state.textColor}
+                onChange={(e) =>
+                  methods.handleOnChange("textColor", e.target.value)
+                }
+              />
+            </WithCopy>
           </WithAccordion>
 
           <WithAccordion
@@ -249,6 +269,8 @@ export const PageCarousel = () => {
                   authorAvatar={state.state.authorAvatarURL}
                   ref={state.cardRefs.current[cardIndex]}
                   accentColor={state.state.accentColor}
+                  bgColor={state.state.bgColor}
+                  textColor={state.state.textColor}
                 />
               );
             })}

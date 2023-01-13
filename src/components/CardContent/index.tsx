@@ -7,13 +7,17 @@ export const CardContent = forwardRef((props: ICard, ref) => {
   const style = {
     color: `${props.accentColor}.500`,
     colorScheme: props.accentColor,
-    bg: `${props.accentColor}.900`,
+    bg: `${props.bgColor}.800`,
+    text: `${props.textColor}.50`,
+    textFaded: `${props.textColor}.100`,
   };
+
+  console.log(style);
 
   return (
     <Chakra.VStack
       w="480px"
-      bg="gray.800"
+      bg={style.bg}
       h="600px"
       align="flex-start"
       position="relative"
@@ -31,7 +35,7 @@ export const CardContent = forwardRef((props: ICard, ref) => {
         // bg="linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.75) 100%)"
       >
         <Chakra.VStack w="full" h="full" align="flex-start" spacing="8">
-          <Chakra.Text color="gray.300">
+          <Chakra.Text color={style.textFaded}>
             {props.subject || "Subject"}
           </Chakra.Text>
           <Chakra.Text
@@ -51,10 +55,10 @@ export const CardContent = forwardRef((props: ICard, ref) => {
         <Chakra.HStack spacing="4" w="full" justify="flex-start">
           {/* <Chakra.Avatar src={props.authorAvatar} size="sm" /> */}
           <Chakra.VStack spacing="0" align="flex-start">
-            <Chakra.Text color="white" fontSize="sm">
+            <Chakra.Text color={style.text} fontSize="sm">
               {props.authorName}
             </Chakra.Text>{" "}
-            <Chakra.Text color="gray.300" fontSize="xs">
+            <Chakra.Text color={style.textFaded} fontSize="xs">
               @{props.authorHandle}
             </Chakra.Text>
           </Chakra.VStack>

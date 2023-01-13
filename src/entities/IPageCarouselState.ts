@@ -11,4 +11,6 @@ export interface IPageCarouselState {
   fileName: string;
   cards: ICardContent[];
   accentColor: IColors;
+  bgColor: IColors;
+  textColor: IColors;
 }

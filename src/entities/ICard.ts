@@ -6,6 +6,8 @@ export interface ICard extends ICardContent {
   authorHandle: string;
   authorAvatar: string;
   accentColor: IColors;
+  bgColor: IColors;
+  textColor: IColors;
 }
 
 export interface ICardContent {

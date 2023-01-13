@@ -21,6 +21,8 @@ export const usePageCarousel = () => {
     bgImage: "",
     fileName: "",
     accentColor: "teal",
+    bgColor: "gray",
+    textColor: "gray",
     cards: [
       {
         content: "",
